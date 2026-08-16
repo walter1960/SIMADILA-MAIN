@@ -10,16 +10,16 @@ const News = () => {
         {
             id: 1,
             title: "Objectif 2026 : Accompagnement de 50 enfants au Togo et au Bénin",
-            date: "15 janvier 2026",
+            date: "25 mai 2026",
             category: "impact",
             image: "/staticfiles/img/galerie-eleves-ecole.jpg",
-            excerpt: "Simadila Educ'Action lance ses programmes d'accompagnement éducatif 2026 pour 50 enfants bénéficiaires au Togo et au Bénin.",
+            excerpt: "Simadila Educ'Action intensifie ses programmes d'accompagnement éducatif 2026 pour 50 enfants bénéficiaires au Togo et au Bénin.",
             link: "/mission"
         },
         {
             id: 2,
             title: "Distribution de 500 kits scolaires au Togo et au Bénin",
-            date: "20 décembre 2025",
+            date: "20 mai 2026",
             category: "terrain",
             image: "/staticfiles/img/galerie-distribution-vetements.jpg",
             excerpt: "Notre équipe sur le terrain a distribué 500 kits scolaires complets aux élèves des écoles partenaires au Togo et au Bénin.",
@@ -28,7 +28,7 @@ const News = () => {
         {
             id: 3,
             title: "Mobilisation bénévole et préparation des dotations",
-            date: "10 décembre 2025",
+            date: "10 mai 2026",
             category: "terrain",
             image: "/staticfiles/img/galerie-benevoles-tri.jpg",
             excerpt: "Nos bénévoles se mobilisent pour organiser, trier et préparer les fournitures et équipements scolaires destinés aux écoles rurales.",
@@ -37,7 +37,7 @@ const News = () => {
         {
             id: 4,
             title: "Documents statutaires et engagement RGPD disponibles",
-            date: "1 décembre 2025",
+            date: "1 mai 2026",
             category: "transparence",
             image: "/staticfiles/img/simadila-enfants-ecole.jpg",
             excerpt: "Consultez les statuts officiels de l'association ainsi que notre politique de protection des données et de l'image de nos bénéficiaires.",
