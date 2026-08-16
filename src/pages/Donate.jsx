@@ -15,6 +15,30 @@ const Donate = () => {
         setTimeout(() => setCopiedField(null), 3000);
     };
 
+    const [isProcessingHelloAsso, setIsProcessingHelloAsso] = useState(false);
+
+    const handleHelloAssoPayment = async () => {
+        setIsProcessingHelloAsso(true);
+        try {
+            const res = await fetch('/api/helloasso', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ amount: 50 })
+            });
+            const data = await res.json();
+            if (data.redirectUrl) {
+                window.location.href = data.redirectUrl;
+                return;
+            }
+        } catch (e) {
+            console.warn('HelloAsso API checkout error, fallback to portal:', e);
+        } finally {
+            setIsProcessingHelloAsso(false);
+        }
+        // Fallback to HelloAsso page
+        window.open('https://www.helloasso.com/associations/simadila-educ-action/don', '_blank');
+    };
+
     return (
         <section className="section" id="donate">
             <div className="container">
@@ -45,15 +69,14 @@ const Donate = () => {
                         </p>
 
                         <div className="payment-cta-box" style={{ marginTop: '25px' }}>
-                            <a
-                                href="https://www.helloasso.com"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <button
+                                onClick={handleHelloAssoPayment}
+                                disabled={isProcessingHelloAsso}
                                 className="btn btn-gold"
-                                style={{ width: '100%', justifyContent: 'center', fontWeight: 'bold' }}
+                                style={{ width: '100%', justifyContent: 'center', fontWeight: 'bold', cursor: 'pointer' }}
                             >
-                                <i className="fas fa-heart"></i> Donner via HelloAsso
-                            </a>
+                                <i className="fas fa-heart"></i> {isProcessingHelloAsso ? "Connexion sécurisée..." : "Donner via HelloAsso"}
+                            </button>
                         </div>
                     </div>
 
