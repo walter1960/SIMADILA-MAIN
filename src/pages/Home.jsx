@@ -10,7 +10,7 @@ const Home = () => {
         <>
             {/* Hero Section with Emotional Storytelling */}
             <section className="hero" id="accueil">
-                <video autoPlay muted loop className="video-background" poster="/staticfiles/img/galerie-eleves-ecole.jpg">
+                <video autoPlay muted loop className="video-background" poster="/staticfiles/img/boy-holding-white-paper-school.jpg">
                     <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" type="video/mp4" />
                     Votre navigateur ne supporte pas la lecture de vidéos.
                 </video>
@@ -50,7 +50,7 @@ const Home = () => {
                     <h2 className="section-title">Histoires qui Inspirent</h2>
                     <div className="stories-grid">
                         <div className="story-card">
-                            <img src="/staticfiles/img/galerie-eleves-ecole.jpg" alt="Édem" />
+                            <img src="/staticfiles/img/boy-holding-white-paper-school.jpg" alt="Édem" />
                             <div className="story-content">
                                 <h3>L'histoire de Édem</h3>
                                 <p>"J'ai bénéficié de fournitures scolaires, mon espoir est renforcé, je souhaite devenir médecin un jour pour soigner des gens"</p>
