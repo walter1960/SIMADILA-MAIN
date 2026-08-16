@@ -20,7 +20,7 @@ const Home = () => {
                 <div className="container hero-content">
                     <h1>Éducation pour Tous en Afrique de l'Ouest</h1>
                     <p className="hero-quote">"Grâce à vos dons j'ai eu accès à une éducation et un accompagnement de qualité"</p>
-                    <p className="hero-impact">En 2026, <strong>50 enfants</strong> sont accompagnés grâce à votre soutien.</p>
+                    <p className="hero-impact">En 2026, <strong>50 enfants</strong> sont déjà accompagnés grâce à votre soutien.</p>
                     <div className="hero-cta-group">
                         <Link to="/mission" className="btn btn-large">Découvrir notre mission</Link>
                         <Link to="/donate" className="btn btn-large btn-outline-white">
@@ -58,11 +58,11 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="story-card">
-                            <img src="/staticfiles/img/galerie-distribution-vetements.jpg" alt="Fatou" />
+                            <img src="/staticfiles/img/galerie-distribution-vetements.jpg" alt="Alima" />
                             <div className="story-content">
-                                <h3>Le parcours de Fatou</h3>
+                                <h3>Le parcours d'Alima</h3>
                                 <p>"Grâce aux fournitures scolaires, je peux suivre les cours comme les autres. Je suis première de ma classe !"</p>
-                                <span className="story-author">Fatou, 9 ans, Bénin</span>
+                                <span className="story-author">Alima, 9 ans, Bénin</span>
                             </div>
                         </div>
                     </div>
