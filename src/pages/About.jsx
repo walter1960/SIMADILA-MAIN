@@ -20,9 +20,12 @@ const About = () => {
                         <h4>Information Légale</h4>
                         <p>Il est fondé entre les adhérents aux présents statuts une association régie par la loi du 1er
                             juillet 1901 et le décret du 16 août 1901, ayant pour dénomination : Simadila Educ’Action.</p>
+                        <p style={{ marginTop: '10px' }}>
+                            Notre association respecte les normes RGPD (Règlement Général sur la Protection des Données personnelles) tout en protégeant l'image et la dignité de nos bénéficiaires.
+                        </p>
                     </div>
                     <div className="about-image">
-                        <img src="/staticfiles/img/boy-holding-white-paper-school.jpg" alt="Éducation en milieu rural"
+                        <img src="/staticfiles/img/simadila-enfants-ecole.jpg" alt="Bénéficiaires et équipe de Simadila Educ'Action"
                             className="about-img-bg" />
                     </div>
                 </div>

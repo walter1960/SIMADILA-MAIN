@@ -24,6 +24,10 @@ const Mission = () => {
                             <p>Soutenir les familles et les acteurs éducatifs par des outils, des ressources et un
                                 accompagnement personnalisé pour renforcer leur capacité à accompagner les jeunes.</p>
                         </div>
+                        <div className="mission-card">
+                            <h3>Développement Durable</h3>
+                            <p>Mener des actions sociales et environnementales afin de concilier développement économique, hygiène et santé. Les préoccupations environnementales constituent un gage pour la qualité de vie et l'intérêt général.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -33,20 +37,20 @@ const Mission = () => {
                 <div className="container">
                     <div className="stats-grid">
                         <div className="stat-item">
-                            <h3>50+</h3>
-                            <p>Villages touchés</p>
+                            <h3>2</h3>
+                            <p>Pays d'intervention (Togo & Bénin)</p>
                         </div>
                         <div className="stat-item">
-                            <h3>5000+</h3>
-                            <p>Enfants bénéficiaires</p>
+                            <h3>+50</h3>
+                            <p>Enfants accompagnés</p>
                         </div>
                         <div className="stat-item">
-                            <h3>100+</h3>
-                            <p>Volontaires engagés</p>
+                            <h3>+10</h3>
+                            <p>Villages et localités</p>
                         </div>
                         <div className="stat-item">
-                            <h3>8</h3>
-                            <p>Pays d'intervention</p>
+                            <h3>500+</h3>
+                            <p>Kits scolaires distribués</p>
                         </div>
                     </div>
                 </div>

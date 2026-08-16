@@ -4,13 +4,13 @@ import ImpactCounter from '../components/ImpactCounter';
 import TrustSignals from '../components/TrustSignals';
 
 const Home = () => {
-    useScrollAnimation('.hero-content, .donation-hero .container, .impact-section, .story-card');
+    useScrollAnimation('.donation-hero .container, .impact-section, .story-card');
 
     return (
         <>
             {/* Hero Section with Emotional Storytelling */}
             <section className="hero" id="accueil">
-                <video autoPlay muted loop className="video-background" poster="/staticfiles/img/boy-holding-white-paper-school.jpg">
+                <video autoPlay muted loop className="video-background" poster="/staticfiles/img/galerie-eleves-ecole.jpg">
                     <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" type="video/mp4" />
                     Votre navigateur ne supporte pas la lecture de vidéos.
                 </video>
@@ -19,8 +19,8 @@ const Home = () => {
 
                 <div className="container hero-content">
                     <h1>Éducation pour Tous en Afrique de l'Ouest</h1>
-                    <p className="hero-quote">"Grâce à vous, j'ai pu aller à l'école" — Aïcha, 8 ans, Dakar</p>
-                    <p className="hero-impact">En 2025, <strong>150 enfants</strong> comme Aïcha ont été scolarisés grâce à votre soutien.</p>
+                    <p className="hero-quote">"Grâce à vos dons j'ai eu accès à une éducation et un accompagnement de qualité"</p>
+                    <p className="hero-impact">En 2026, <strong>50 enfants</strong> sont accompagnés grâce à votre soutien.</p>
                     <div className="hero-cta-group">
                         <Link to="/mission" className="btn btn-large">Découvrir notre mission</Link>
                         <Link to="/donate" className="btn btn-large btn-outline-white">
@@ -33,12 +33,12 @@ const Home = () => {
             {/* Impact Section with Counters */}
             <section className="impact-section">
                 <div className="container">
-                    <h2 className="section-title">Notre Impact en 2025</h2>
-                    <p className="section-subtitle">Des chiffres qui témoignent de votre générosité</p>
+                    <h2 className="section-title">Notre Mission 2026</h2>
+                    <p className="section-subtitle">Des objectifs concrets pour transformer l'avenir des enfants</p>
                     <div className="impact-stats-grid">
-                        <ImpactCounter target={150} label="Enfants scolarisés" />
+                        <ImpactCounter target={50} label="Enfants scolarisés" />
                         <ImpactCounter target={500} label="Kits scolaires distribués" />
-                        <ImpactCounter target={1250} label="Donateurs actifs" />
+                        <ImpactCounter target={50} label="Donateurs actifs" suffix="+" />
                         <ImpactCounter target={85} label="% de réussite scolaire" suffix="%" />
                     </div>
                 </div>
@@ -50,19 +50,19 @@ const Home = () => {
                     <h2 className="section-title">Histoires qui Inspirent</h2>
                     <div className="stories-grid">
                         <div className="story-card">
-                            <img src="/staticfiles/img/boy-holding-white-paper-school.jpg" alt="Mamadou" />
+                            <img src="/staticfiles/img/galerie-eleves-ecole.jpg" alt="Édem" />
                             <div className="story-content">
-                                <h3>L'histoire de Mamadou</h3>
-                                <p>"Avant, je ne pouvais pas aller à l'école. Maintenant, je rêve de devenir médecin pour aider mon village."</p>
-                                <span className="story-author">— Mamadou, 10 ans, Thiès</span>
+                                <h3>L'histoire de Édem</h3>
+                                <p>"J'ai bénéficié de fournitures scolaires, mon espoir est renforcé, je souhaite devenir médecin un jour pour soigner des gens"</p>
+                                <span className="story-author">Édem, 10 ans, Togo</span>
                             </div>
                         </div>
                         <div className="story-card">
-                            <img src="/staticfiles/img/Capture d'écran 2026-01-16 103733.png" alt="Fatou" />
+                            <img src="/staticfiles/img/galerie-distribution-vetements.jpg" alt="Fatou" />
                             <div className="story-content">
                                 <h3>Le parcours de Fatou</h3>
                                 <p>"Grâce aux fournitures scolaires, je peux suivre les cours comme les autres. Je suis première de ma classe !"</p>
-                                <span className="story-author">— Fatou, 9 ans, Dakar</span>
+                                <span className="story-author">Fatou, 9 ans, Bénin</span>
                             </div>
                         </div>
                     </div>
@@ -80,11 +80,6 @@ const Home = () => {
             <section className="donation-hero">
                 <div className="container">
                     <h2>Votre Soutien Change des Vies</h2>
-                    <p className="donation-impact-message">
-                        <strong>20€</strong> = 1 mois de fournitures scolaires •
-                        <strong>50€</strong> = 3 mois de cantine •
-                        <strong>100€</strong> = 1 trimestre complet
-                    </p>
                     <div className="donation-cta-group">
                         <Link to="/donate" className="btn btn-large btn-gold">
                             <i className="fas fa-heart"></i> FAIRE UN DON
@@ -93,10 +88,6 @@ const Home = () => {
                             <i className="fas fa-users"></i> DEVENIR MEMBRE
                         </Link>
                     </div>
-                    <p className="donation-reassurance">
-                        <i className="fas fa-shield-alt"></i> Paiement 100% sécurisé •
-                        <i className="fas fa-receipt"></i> Reçu fiscal 66%
-                    </p>
                 </div>
             </section>
         </>

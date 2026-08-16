@@ -12,7 +12,7 @@ const Join = () => {
 
                 <div className="join-form-container fade-in">
                     <h3>Formulaire d'Adhésion</h3>
-                    <form action="mailto:contact@simadila.org?subject=Nouvelle Demande Adhésion" method="post"
+                    <form action="mailto:simadilaeducaction@gmail.com?subject=Nouvelle Demande d'Adhésion" method="post"
                         encType="text/plain">
                         <div className="form-group">
                             <label>Identité</label>

@@ -236,11 +236,36 @@ nav a:hover {
 .hero-content {
     position: relative;
     z-index: 2;
-    padding: 20px;
-    opacity: 0;
-    /* For animation */
-    animation: fadeInUp 1.2s ease-out 0.5s forwards;
-    /* Delay start */
+    padding: 30px 20px;
+    opacity: 1 !important;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #ffffff !important;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+    margin-bottom: 20px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+
+.hero .hero-quote {
+    font-size: 1.35rem;
+    color: #ffd700 !important;
+    font-weight: 600;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.hero .hero-impact {
+    font-size: 1.2rem;
+    color: #f8fafc !important;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+    margin-bottom: 30px;
 }
 
 /* Video Gallery Section */
@@ -822,10 +847,9 @@ footer {
     background: white;
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     max-width: 700px;
     margin: 0 auto;
-    border-top: 5px solid var(--primary);
 }
 
 .join-form-container h3 {
@@ -844,21 +868,652 @@ footer {
 
 .donation-card {
     background: white;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border-top: 5px solid var(--secondary);
+    padding: 32px 28px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e2e8f0;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     transition: var(--transition);
 }
 
 .donation-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
+}
+
+.payment-method-icon {
+    color: var(--secondary);
+    margin-bottom: 12px;
 }
 
 .donation-card h3 {
     color: var(--primary);
+    margin-bottom: 8px;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.payment-badges {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.badge-tag {
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+}
+
+.payment-description {
+    color: #4b5563;
+    font-size: 0.9rem;
+    line-height: 1.5;
     margin-bottom: 15px;
-    font-size: 1.8rem;
+}
+
+/* ===================================================
+   Gallery Showcase & Grid Styling
+   =================================================== */
+.gallery-page-section {
+    background-color: #fafbfc;
+}
+
+.gallery-carousel-wrapper {
+    margin-bottom: 50px;
+}
+
+.gallery-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.gallery-item-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery-item-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+}
+
+.gallery-img-container {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    background: #eef2f5;
+}
+
+.gallery-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item-card:hover .gallery-img-container img {
+    transform: scale(1.05);
+}
+
+.gallery-overlay-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(44, 85, 48, 0.9);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(4px);
+}
+
+.gallery-zoom-icon {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--primary);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.gallery-item-card:hover .gallery-zoom-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.gallery-item-info {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.gallery-meta {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.gallery-meta i {
+    color: var(--secondary);
+}
+
+.gallery-item-info h3 {
+    font-size: 1.25rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.gallery-item-info p {
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Lightbox Modal */
+.gallery-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 20, 15, 0.88);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.25s ease-out;
+}
+
+.gallery-modal-content {
+    background: white;
+    border-radius: 20px;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-modal-content img {
+    width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+    background: #111;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: block;
+}
+
+.gallery-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 10;
+}
+
+.gallery-modal-close:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.gallery-modal-caption {
+    padding: 24px 30px;
+}
+
+.gallery-modal-badge {
+    display: inline-block;
+    background: rgba(44, 85, 48, 0.1);
+    color: var(--primary);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.gallery-modal-caption h3 {
+    color: var(--primary);
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+}
+
+.gallery-modal-caption p {
+    color: #4b5563;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Document Reader Modal Styles */
+.doc-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(6px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.25s ease-out;
+}
+
+.doc-modal-container {
+    background: #ffffff;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.doc-modal-header {
+    padding: 24px 30px;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.doc-modal-badge {
+    display: inline-block;
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.doc-modal-header h2 {
+    font-size: 1.3rem;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.doc-modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.btn-modal-print {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+
+.btn-modal-print:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+.btn-modal-close {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #64748b;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+}
+
+.btn-modal-close:hover {
+    background: #fee2e2;
+    color: #dc2626;
+    border-color: #fca5a5;
+}
+
+.doc-modal-body {
+    padding: 30px 35px;
+    overflow-y: auto;
+    color: #334155;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    flex: 1;
+}
+
+.statuts-preamble {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 20px 24px;
+    border-radius: 8px;
+    margin-bottom: 28px;
+}
+
+.statuts-preamble h3 {
+    color: #0f172a;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.statuts-section {
+    margin-bottom: 30px;
+}
+
+.statuts-section > h3 {
+    color: #0f172a;
+    font-size: 1.15rem;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    font-weight: 700;
+}
+
+.statuts-article {
+    margin-bottom: 18px;
+    background: #ffffff;
+    padding: 16px 20px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.statuts-article h4 {
+    color: #1e293b;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.statuts-article ul, .statuts-article ol {
+    padding-left: 20px;
+    margin-top: 8px;
+}
+
+.statuts-article li {
+    margin-bottom: 6px;
+}
+
+.doc-modal-footer {
+    padding: 16px 30px;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.btn-doc-close {
+    background: #ffffff;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-doc-close:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+.btn-doc-print {
+    background: #0f172a;
+    color: #ffffff;
+    border: 1px solid #0f172a;
+    padding: 9px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.btn-doc-print:hover {
+    background: #334155;
+    border-color: #334155;
+}
+
+@page {
+    size: A4 portrait;
+    margin: 1.5cm;
+}
+
+@media print {
+    html, body {
+        background: #ffffff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        height: auto !important;
+        overflow: visible !important;
+        font-family: "Times New Roman", Times, Georgia, serif, sans-serif !important;
+        font-size: 11pt !important;
+        color: #000000 !important;
+    }
+
+    /* Hide website chrome, buttons and layout */
+    header,
+    footer,
+    nav,
+    .section,
+    .doc-modal-actions,
+    .doc-modal-footer,
+    .btn-modal-close,
+    .btn-modal-print,
+    .doc-modal-badge {
+        display: none !important;
+    }
+
+    .doc-modal-overlay {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        display: block !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    .doc-modal-container {
+        position: static !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        max-height: none !important;
+        height: auto !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        overflow: visible !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .doc-modal-header {
+        border: none !important;
+        border-bottom: none !important;
+        padding: 0 0 15px 0 !important;
+        margin-bottom: 20px !important;
+        background: transparent !important;
+        display: block !important;
+        text-align: center !important;
+    }
+
+    .doc-modal-header h2 {
+        color: #000000 !important;
+        font-size: 15pt !important;
+        font-weight: bold !important;
+        margin: 0 !important;
+        text-align: center !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    .doc-modal-body {
+        padding: 0 !important;
+        overflow: visible !important;
+        height: auto !important;
+        color: #000000 !important;
+        font-size: 11pt !important;
+        line-height: 1.5 !important;
+    }
+
+    .statuts-preamble {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        margin-bottom: 18px !important;
+        page-break-inside: avoid;
+    }
+
+    .statuts-preamble h3 {
+        color: #000000 !important;
+        font-size: 12pt !important;
+        font-weight: bold !important;
+        text-decoration: none !important;
+        margin-bottom: 6px !important;
+    }
+
+    .statuts-section {
+        margin-bottom: 18px !important;
+        page-break-inside: auto;
+    }
+
+    .statuts-section > h3 {
+        color: #000000 !important;
+        font-size: 12pt !important;
+        font-weight: bold !important;
+        border: none !important;
+        border-bottom: none !important;
+        padding-bottom: 0 !important;
+        margin-top: 14px !important;
+        margin-bottom: 10px !important;
+        text-decoration: none !important;
+        page-break-after: avoid;
+    }
+
+    .statuts-article {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        margin-bottom: 12px !important;
+        page-break-inside: avoid;
+    }
+
+    .statuts-article h4 {
+        color: #000000 !important;
+        font-size: 11pt !important;
+        font-weight: bold !important;
+        margin-top: 8px !important;
+        margin-bottom: 4px !important;
+        page-break-after: avoid;
+    }
+
+    .statuts-article p,
+    .statuts-preamble p {
+        margin-bottom: 6px !important;
+        text-align: justify !important;
+    }
+
+    .statuts-article ul,
+    .statuts-article ol {
+        margin-top: 4px !important;
+        margin-bottom: 6px !important;
+        padding-left: 25px !important;
+    }
+
+    .statuts-article li {
+        margin-bottom: 4px !important;
+    }
 }

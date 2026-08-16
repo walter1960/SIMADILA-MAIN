@@ -12,9 +12,10 @@ const Contact = () => {
                         <p><strong>Nous sommes à votre écoute.</strong> Pour toute question, demande de partenariat ou
                             information sur nos actions, n'hésitez pas à nous contacter.</p>
                         <br />
-                        <p><strong>Email:</strong> contact@simadila.org</p>
+                        <p><strong>Email:</strong> simadilaeducaction@gmail.com</p>
                         <p><strong>Téléphone:</strong> +33 7 50 61 37 35</p>
-                        <p><strong>Adresse:</strong> Paris, France (Siège) / Dakar, Sénégal (Antenne)</p>
+                        <p><strong>Siège social:</strong> Aképé Maison KOUBIDINA Amoussou, quartier Sogbosito (Togo)</p>
+                        <p><strong>Antenne:</strong> France (Partenariats & coopérations)</p>
                     </div>
                     <div className="about-image" style={{ background: 'var(--light)', color: 'var(--primary)' }}>
                         <img

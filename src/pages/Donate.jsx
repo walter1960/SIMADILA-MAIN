@@ -1,59 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
-import DonationAmountSelector from '../components/DonationAmountSelector';
 import TrustSignals from '../components/TrustSignals';
 
 const Donate = () => {
     useScrollAnimation('.section-title, .donation-card');
-    const [selectedAmount, setSelectedAmount] = useState(50);
+    const [copiedField, setCopiedField] = useState(null); // 'iban' | 'phone' | null
 
-    useEffect(() => {
-        // Load PayPal SDK
-        const script = document.createElement('script');
-        script.src = `https://www.paypal.com/sdk/js?client-id=sb&currency=EUR&locale=fr_FR`;
-        script.async = true;
-        script.onload = () => {
-            if (window.paypal) {
-                renderPayPalButton();
-            }
-        };
-        document.body.appendChild(script);
+    const iban = "FR76 1027 8027 4000 0509 5150 133";
+    const mobileMoneyPhone = "+228 96 03 25 36";
 
-        return () => {
-            if (document.body.contains(script)) {
-                document.body.removeChild(script);
-            }
-        };
-    }, [selectedAmount]);
-
-    const renderPayPalButton = () => {
-        const container = document.getElementById('paypal-button-container');
-        if (!container) return;
-
-        container.innerHTML = ''; // Clear previous button
-
-        window.paypal.Buttons({
-            style: {
-                shape: 'rect',
-                color: 'gold',
-                layout: 'vertical',
-                label: 'donate',
-            },
-            createOrder: function (data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: selectedAmount.toString()
-                        }
-                    }]
-                });
-            },
-            onApprove: function (data, actions) {
-                return actions.order.capture().then(function (details) {
-                    alert(`Merci pour votre don de ${selectedAmount}€, ${details.payer.name.given_name} ! Votre contribution va scolariser des enfants.`);
-                });
-            }
-        }).render('#paypal-button-container');
+    const handleCopy = (text, fieldName) => {
+        navigator.clipboard.writeText(text);
+        setCopiedField(fieldName);
+        setTimeout(() => setCopiedField(null), 3000);
     };
 
     return (
@@ -61,69 +20,117 @@ const Donate = () => {
             <div className="container">
                 <h2 className="section-title">Soutenez Nos Actions</h2>
                 <p className="donate-intro">
-                    Votre contribution change des vies. <strong>Chaque euro compte</strong> pour offrir une éducation de qualité aux enfants d'Afrique de l'Ouest.
+                    Votre contribution change des vies. <strong>Chaque don</strong> est directement investi dans la scolarisation, la cantine et l'équipement des enfants au Togo et au Bénin.
                 </p>
 
                 {/* Trust Signals */}
                 <TrustSignals />
 
-                {/* Impact Message */}
-                <div className="impact-message-box">
+                {/* Payment Methods Grid - Placed at Top */}
+                <div className="donation-options" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(310px, 1fr))', marginTop: '30px' }}>
+                    
+                    {/* Method 1: HelloAsso (CB, Apple Pay, Google Pay) */}
+                    <div className="donation-card">
+                        <div className="payment-method-icon">
+                            <i className="fas fa-credit-card fa-2x"></i>
+                        </div>
+                        <h3>Carte Bancaire & Pay</h3>
+                        <div className="payment-badges">
+                            <span className="badge-tag">Apple Pay</span>
+                            <span className="badge-tag">Google Pay</span>
+                            <span className="badge-tag">CB</span>
+                        </div>
+                        <p className="payment-description">
+                            Paiement 100% sécurisé via la plateforme solidaire française <strong>HelloAsso</strong> (0% de frais, reçu de don immédiat).
+                        </p>
+
+                        <div className="payment-cta-box" style={{ marginTop: '25px' }}>
+                            <a
+                                href="https://www.helloasso.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn btn-gold"
+                                style={{ width: '100%', justifyContent: 'center', fontWeight: 'bold' }}
+                            >
+                                <i className="fas fa-heart"></i> Donner via HelloAsso
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Method 2: Bank Transfer (Crédit Mutuel) */}
+                    <div className="donation-card">
+                        <div className="payment-method-icon">
+                            <i className="fas fa-university fa-2x"></i>
+                        </div>
+                        <h3>Virement Bancaire</h3>
+                        <div className="payment-badges">
+                            <span className="badge-tag">Crédit Mutuel</span>
+                            <span className="badge-tag">SEPA / RIB</span>
+                        </div>
+                        <p className="payment-description">
+                            Pour les virements bancaires ponctuels ou réguliers directement sur le compte associatif :
+                        </p>
+
+                        <div className="bank-details-box" style={{ background: '#f8fafc', padding: '16px', borderRadius: '10px', margin: '15px 0', border: '1px solid #e2e8f0', textAlign: 'left', fontSize: '0.9rem' }}>
+                            <p style={{ marginBottom: '6px' }}><strong>Banque :</strong> Crédit Mutuel</p>
+                            <p style={{ marginBottom: '6px' }}><strong>Titulaire :</strong> Association Simadila Educ'Action</p>
+                            <div style={{ marginTop: '10px' }}>
+                                <span style={{ fontSize: '0.75rem', color: '#64748b', textTransform: 'uppercase', fontWeight: 'bold' }}>IBAN (France / International) :</span>
+                                <p style={{ fontSize: '0.95rem', fontWeight: 'bold', color: '#0f172a', wordBreak: 'break-all', marginTop: '3px', background: '#ffffff', padding: '8px', borderRadius: '6px', border: '1px solid #cbd5e1' }}>
+                                    {iban}
+                                </p>
+                            </div>
+                        </div>
+
+                        <button
+                            onClick={() => handleCopy(iban.replace(/\s+/g, ''), 'iban')}
+                            className="btn btn-outline"
+                            style={{ width: '100%', justifyContent: 'center', cursor: 'pointer' }}
+                        >
+                            <i className={copiedField === 'iban' ? "fas fa-check" : "fas fa-copy"}></i>
+                            {copiedField === 'iban' ? " IBAN copié !" : " Copier l'IBAN"}
+                        </button>
+                    </div>
+
+                    {/* Method 3: Mobile Money Togo (Moov Money) - Discreet */}
+                    <div className="donation-card" style={{ opacity: 0.95 }}>
+                        <div className="payment-method-icon">
+                            <i className="fas fa-mobile-alt fa-2x"></i>
+                        </div>
+                        <h3>Moov Money</h3>
+                        <div className="payment-badges">
+                            <span className="badge-tag">Moov Money Togo</span>
+                        </div>
+                        <p className="payment-description">
+                            Option pour vos contributions directes au Togo via Moov Money :
+                        </p>
+
+                        <div className="mobile-money-box" style={{ background: '#f8fafc', padding: '15px', borderRadius: '10px', margin: '15px 0', border: '1px solid #e2e8f0' }}>
+                            <img
+                                src="/staticfiles/img/qr-mobile-money.png"
+                                alt="Code QR Moov Money"
+                                style={{ width: '110px', height: '110px', margin: '0 auto 8px', display: 'block', borderRadius: '6px', border: '1px solid #cbd5e1' }}
+                            />
+                            <p style={{ fontSize: '0.8rem', color: '#475569', margin: '4px 0 2px' }}>Scannez le code QR pour effectuer votre don</p>
+                            <p style={{ fontSize: '0.8rem', color: '#64748b' }}>Bénéficiaire : <strong>Simadila Educ'Action</strong></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                {/* Impact Equivalences Box - Placed below */}
+                <div className="impact-message-box" style={{ marginTop: '40px' }}>
                     <i className="fas fa-heart fa-2x"></i>
                     <div>
                         <h3>Votre Impact Direct</h3>
                         <p><strong>20€</strong> = 1 mois de fournitures scolaires pour 1 enfant</p>
                         <p><strong>50€</strong> = 3 mois de cantine pour 1 enfant</p>
-                        <p><strong>100€</strong> = Scolarisation complète pour 1 trimestre</p>
-                    </div>
-                </div>
-
-                {/* Amount Selector */}
-                <DonationAmountSelector onSelect={setSelectedAmount} />
-
-                <div className="donation-options">
-                    {/* Column 1: Online Payment API */}
-                    <div className="donation-card" style={{ borderTopColor: 'var(--accent)' }}>
-                        <div className="recommended-badge-large">
-                            <i className="fas fa-bolt"></i> Recommandé : Instantané & Sécurisé
-                        </div>
-                        <h3>Paiement en ligne</h3>
-                        <p>Payez simplement par Carte Bancaire ou PayPal.</p>
-
-                        {/* PayPal Button Container */}
-                        <div className="payment-api-container">
-                            <div id="paypal-button-container"></div>
-                        </div>
-                        <p className="security-note">
-                            <i className="fas fa-lock"></i> Transaction sécurisée SSL • Reçu fiscal automatique
-                        </p>
-                    </div>
-
-                    {/* Column 2: Bank Transfer */}
-                    <div className="donation-card">
-                        <i className="fas fa-university fa-3x" style={{ color: 'var(--secondary)', marginBottom: '20px' }}></i>
-                        <h3>Virement Bancaire</h3>
-                        <p>Pour les dons importants ou réguliers, privilégiez le virement.</p>
-
-                        <div className="bank-details-direct">
-                            <h3>Coordonnées Bancaires (RIB)</h3>
-                            <p><strong>Titulaire :</strong> Simadila Educ'Action</p>
-                            <p><strong>Banque :</strong> [Nom de la Banque]</p>
-                            <p className="iban-display">
-                                IBAN : FR76 XXXX XXXX XXXX XXXX XXXX XXX
-                            </p>
-                            <p><strong>BIC / SWIFT :</strong> XXXXXXXX</p>
-                        </div>
-
-                        <br />
-                        <a href="#" className="btn" style={{ backgroundColor: 'var(--gray)' }}>
-                            <i className="fas fa-print"></i> Imprimer la fiche complète
-                        </a>
+                        <p><strong>100€</strong> = Scolarisation complète pour 9 mois</p>
                     </div>
                 </div>
 
                 {/* Transparency Section */}
-                <div className="transparency-section">
+                <div className="transparency-section" style={{ marginTop: '50px' }}>
                     <h3><i className="fas fa-chart-pie"></i> Où va votre don ?</h3>
                     <div className="transparency-breakdown">
                         <div className="breakdown-item">
@@ -139,9 +146,6 @@ const Donate = () => {
                             <span>5% Collecte de fonds</span>
                         </div>
                     </div>
-                    <p className="transparency-note">
-                        <i className="fas fa-info-circle"></i> Consultez notre <a href="/publications">rapport financier complet</a> pour plus de détails.
-                    </p>
                 </div>
             </div>
         </section>

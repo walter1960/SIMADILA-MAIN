@@ -7,7 +7,7 @@ const DonationAmountSelector = ({ onSelect }) => {
     const amounts = [
         { value: 20, impact: "1 mois de fournitures scolaires pour 1 enfant" },
         { value: 50, impact: "3 mois de cantine pour 1 enfant", recommended: true },
-        { value: 100, impact: "Scolarisation complète pour 1 trimestre" },
+        { value: 100, impact: "Scolarisation complète pour 9 mois" },
         { value: 200, impact: "Parrainage annuel d'un enfant" }
     ];
 
@@ -27,7 +27,6 @@ const DonationAmountSelector = ({ onSelect }) => {
 
     return (
         <div className="amount-selector">
-            <h3 className="amount-selector-title">Choisissez votre montant</h3>
             <div className="amount-options-grid">
                 {amounts.map(({ value, impact, recommended }) => (
                     <button

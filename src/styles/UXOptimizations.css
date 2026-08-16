@@ -304,7 +304,6 @@
     gap: 20px;
     align-items: center;
     margin: 40px 0;
-    border-left: 5px solid var(--secondary);
 }
 
 .impact-message-box i {
@@ -576,7 +575,6 @@
     gap: 30px;
     align-items: center;
     margin: 40px 0;
-    border-left: 5px solid var(--secondary);
 }
 
 .transparency-message i {
@@ -756,8 +754,7 @@
     background: white;
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border-left: 5px solid var(--secondary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 .tender-header {
@@ -946,8 +943,7 @@
     background: white;
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border-left: 5px solid var(--secondary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 .policy-card h3 {

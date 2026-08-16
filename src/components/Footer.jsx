@@ -7,11 +7,9 @@ const Footer = () => {
                 <div className="container">
                     <h4>Nous suivre :</h4>
                     <div className="social-icons">
-                        <a href="#"><i className="fab fa-twitter"></i></a>
-                        <a href="#"><i className="fab fa-linkedin"></i></a>
-                        <a href="#"><i className="fab fa-facebook"></i></a>
-                        <a href="#"><i className="fab fa-youtube"></i></a>
-                        <a href="#"><i className="fab fa-tiktok"></i></a>
+                        <a href="#" aria-label="Facebook"><i className="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="YouTube"><i className="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i className="fab fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
@@ -41,9 +39,9 @@ const Footer = () => {
 
                     <div className="footer-column">
                         <h3>Contact</h3>
-                        <p style={{ marginBottom: '10px' }}><i className="fas fa-envelope"></i> contact@simadila.org</p>
+                        <p style={{ marginBottom: '10px' }}><i className="fas fa-envelope"></i> simadilaeducaction@gmail.com</p>
                         <p style={{ marginBottom: '10px' }}><i className="fas fa-phone"></i> +33 7 50 61 37 35</p>
-                        <p><i className="fas fa-map-marker-alt"></i> Paris, France</p>
+                        <p><i className="fas fa-map-marker-alt"></i> Togo & Bénin / Paris</p>
                     </div>
                 </div>
 

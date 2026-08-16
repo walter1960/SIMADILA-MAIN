@@ -9,47 +9,38 @@ const News = () => {
     const newsArticles = [
         {
             id: 1,
-            title: "150 enfants scolarisés en 2025 !",
+            title: "Objectif 2026 : Accompagnement de 50 enfants au Togo et au Bénin",
             date: "15 janvier 2026",
             category: "impact",
-            image: "/staticfiles/img/boy-holding-white-paper-school.jpg",
-            excerpt: "Grâce à votre générosité, nous avons pu scolariser 150 enfants cette année. Un record qui nous pousse à aller encore plus loin.",
-            link: "#"
+            image: "/staticfiles/img/galerie-eleves-ecole.jpg",
+            excerpt: "Simadila Educ'Action lance ses programmes d'accompagnement éducatif 2026 pour 50 enfants bénéficiaires au Togo et au Bénin.",
+            link: "/mission"
         },
         {
             id: 2,
-            title: "Nouveau partenariat avec l'UNESCO",
-            date: "8 janvier 2026",
-            category: "partenariat",
-            image: "/staticfiles/img/front-view-academic-cap-with-books-pencils.jpg",
-            excerpt: "Simadila Educ'Action signe un partenariat stratégique avec l'UNESCO pour renforcer l'éducation en Afrique de l'Ouest.",
-            link: "#"
+            title: "Distribution de 500 kits scolaires au Togo et au Bénin",
+            date: "20 décembre 2025",
+            category: "terrain",
+            image: "/staticfiles/img/galerie-distribution-vetements.jpg",
+            excerpt: "Notre équipe sur le terrain a distribué 500 kits scolaires complets aux élèves des écoles partenaires au Togo et au Bénin.",
+            link: "/galerie"
         },
         {
             id: 3,
-            title: "Distribution de 500 kits scolaires à Dakar",
-            date: "20 décembre 2025",
+            title: "Mobilisation bénévole et préparation des dotations",
+            date: "10 décembre 2025",
             category: "terrain",
-            image: "/staticfiles/img/front-view-colored-pencils-kept-glass-jar-stacked-spiral-notebooks-right-side-blue-color.jpg",
-            excerpt: "Notre équipe sur le terrain a distribué 500 kits scolaires complets aux élèves de 5 écoles partenaires à Dakar.",
-            link: "#"
+            image: "/staticfiles/img/galerie-benevoles-tri.jpg",
+            excerpt: "Nos bénévoles se mobilisent pour organiser, trier et préparer les fournitures et équipements scolaires destinés aux écoles rurales.",
+            link: "/galerie"
         },
         {
             id: 4,
-            title: "Témoignage : L'histoire d'Aïcha",
-            date: "10 décembre 2025",
-            category: "temoignage",
-            image: "/staticfiles/img/Capture d'écran 2026-01-16 103733.png",
-            excerpt: "Aïcha, 8 ans, nous raconte comment l'école a changé sa vie. Un témoignage émouvant qui rappelle pourquoi nous agissons.",
-            link: "#"
-        },
-        {
-            id: 5,
-            title: "Rapport annuel 2025 disponible",
+            title: "Documents statutaires et engagement RGPD disponibles",
             date: "1 décembre 2025",
             category: "transparence",
-            image: "/staticfiles/img/front-view-stacked-books-graduation-cap-ladders-education-day.jpg",
-            excerpt: "Découvrez notre rapport annuel 2025 : bilan financier, actions menées, et perspectives pour 2026.",
+            image: "/staticfiles/img/simadila-enfants-ecole.jpg",
+            excerpt: "Consultez les statuts officiels de l'association ainsi que notre politique de protection des données et de l'image de nos bénéficiaires.",
             link: "/publications"
         }
     ];
@@ -57,10 +48,8 @@ const News = () => {
     const categories = [
         { value: 'all', label: 'Toutes les actualités' },
         { value: 'impact', label: 'Impact' },
-        { value: 'terrain', label: 'Terrain' },
-        { value: 'partenariat', label: 'Partenariats' },
-        { value: 'temoignage', label: 'Témoignages' },
-        { value: 'transparence', label: 'Transparence' }
+        { value: 'terrain', label: 'Actions Terrain' },
+        { value: 'transparence', label: 'Transparence & Statuts' }
     ];
 
     const filteredNews = filter === 'all'
