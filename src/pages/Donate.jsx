@@ -340,21 +340,32 @@ Bien cordialement,`
 
                 </div>
 
+                {/* Impact Equivalences Box - Placed below */}
+                <div className="impact-message-box" style={{ marginTop: '40px' }}>
+                    <i className="fas fa-heart fa-2x"></i>
+                    <div>
+                        <h3>Votre Impact Direct</h3>
+                        <p><strong>20€</strong> = 1 mois de fournitures scolaires pour 1 enfant</p>
+                        <p><strong>50€</strong> = 3 mois de cantine pour 1 enfant</p>
+                        <p><strong>100€</strong> = Scolarisation complète pour 9 mois</p>
+                    </div>
+                </div>
+
                 {/* Transparency Section */}
                 <div className="transparency-section" style={{ marginTop: '50px' }}>
                     <h3><i className="fas fa-chart-pie"></i> Où va votre don ?</h3>
                     <div className="transparency-breakdown">
                         <div className="breakdown-item">
                             <div className="breakdown-bar" style={{ width: '80%', backgroundColor: '#4a9d4f' }}></div>
-                            <span>80% Programmes sur le terrain</span>
+                            <span>80% Actions terrain</span>
                         </div>
                         <div className="breakdown-item">
-                            <div className="breakdown-bar" style={{ width: '12%', backgroundColor: '#f4a261' }}></div>
-                            <span>12% Frais de fonctionnement</span>
+                            <div className="breakdown-bar" style={{ width: '15%', backgroundColor: '#ffd700' }}></div>
+                            <span>15% Frais administratifs</span>
                         </div>
                         <div className="breakdown-item">
-                            <div className="breakdown-bar" style={{ width: '8%', backgroundColor: '#e76f51' }}></div>
-                            <span>8% Sensibilisation et communication</span>
+                            <div className="breakdown-bar" style={{ width: '5%', backgroundColor: '#6c757d' }}></div>
+                            <span>5% Collecte de fonds</span>
                         </div>
                     </div>
                 </div>
