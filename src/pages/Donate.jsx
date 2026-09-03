@@ -39,6 +39,34 @@ const Donate = () => {
         window.open('https://www.helloasso.com/associations/simadila-educ-action/don', '_blank');
     };
 
+    const handleMaterialDonation = () => {
+        const subject = encodeURIComponent("Proposition de don (fournitures scolaires, matériel ou espèces) - Simadila Educ'Action");
+        const body = encodeURIComponent(
+`Bonjour l'équipe Simadila Educ'Action,
+
+Je souhaite faire un don en nature ou en espèces pour soutenir vos actions éducatives au Togo et au Bénin :
+
+- Type de don (fournitures scolaires, livres, matériel pédagogique/informatique, don en espèces) : 
+- Description détaillée du don : 
+- Quantité / Montant estimé : 
+- Ville / Pays de remise ou d'expédition : 
+- Nom et Prénom : 
+- Téléphone : 
+
+Merci de m'indiquer les modalités pratiques de collecte ou de remise.
+
+Bien cordialement,`
+        );
+
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=simadilaeducaction@gmail.com&su=${subject}&body=${body}`;
+        const mailtoUrl = `mailto:simadilaeducaction@gmail.com?subject=${subject}&body=${body}`;
+
+        const newWindow = window.open(gmailUrl, '_blank');
+        if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+            window.location.href = mailtoUrl;
+        }
+    };
+
     return (
         <section className="section" id="donate">
             <div className="container">
@@ -113,6 +141,35 @@ const Donate = () => {
                             <i className={copiedField === 'iban' ? "fas fa-check" : "fas fa-copy"}></i>
                             {copiedField === 'iban' ? " IBAN copié !" : " Copier l'IBAN"}
                         </button>
+                    </div>
+
+                    {/* Method 3: Dons Matériels & Espèces (Fournitures, Livres, Matériel) */}
+                    <div className="donation-card">
+                        <div className="payment-method-icon">
+                            <i className="fas fa-boxes fa-2x"></i>
+                        </div>
+                        <h3>Fournitures & Espèces</h3>
+                        <div className="payment-badges">
+                            <span className="badge-tag">Kits & Livres</span>
+                            <span className="badge-tag">Matériel</span>
+                            <span className="badge-tag">Espèces</span>
+                        </div>
+                        <p className="payment-description">
+                            Vous souhaitez donner des fournitures scolaires, des livres, du matériel pédagogique ou faire un don direct en espèces :
+                        </p>
+
+                        <div className="payment-cta-box" style={{ marginTop: 'auto', paddingTop: '15px' }}>
+                            <button
+                                onClick={handleMaterialDonation}
+                                className="btn btn-outline"
+                                style={{ width: '100%', justifyContent: 'center', fontWeight: 'bold', cursor: 'pointer' }}
+                            >
+                                <i className="fas fa-paper-plane"></i> Proposer un don
+                            </button>
+                            <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '10px' }}>
+                                Contact : <strong>simadilaeducaction@gmail.com</strong>
+                            </p>
+                        </div>
                     </div>
 
                     {/* Method 3: Mobile Money Togo (Moov Money) - Discreet */}
