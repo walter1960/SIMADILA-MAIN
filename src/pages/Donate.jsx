@@ -4,42 +4,22 @@ import TrustSignals from '../components/TrustSignals';
 import { CBLogo, ApplePayLogo, GooglePayLogo, VisaLogo, MastercardLogo } from '../components/PaymentLogos';
 
 const Donate = () => {
-    useScrollAnimation('.section-title, .donation-card');
-    const [copiedField, setCopiedField] = useState(null); // 'iban' | 'phone' | null
+    useScrollAnimation('.section-title, .donation-checkout-container');
+
+    // Selected payment method: 'card' | 'applepay' | 'googlepay' | 'transfer' | 'moov' | 'materials'
+    const [selectedMethod, setSelectedMethod] = useState('card');
+    const [selectedAmount, setSelectedAmount] = useState(50);
+    const [customAmount, setCustomAmount] = useState('');
+    const [isCustom, setIsCustom] = useState(false);
+    const [copiedField, setCopiedField] = useState(null);
 
     const iban = "FR76 1027 8027 4000 0509 5150 133";
-    const mobileMoneyPhone = "+228 96 03 25 36";
-    // URL directe vers la page HelloAsso de l'association
     const helloAssoUrl = "https://www.helloasso.com/associations/simadila-educ-action";
 
     const handleCopy = (text, fieldName) => {
         navigator.clipboard.writeText(text);
         setCopiedField(fieldName);
         setTimeout(() => setCopiedField(null), 3000);
-    };
-
-    const [isProcessingHelloAsso, setIsProcessingHelloAsso] = useState(false);
-
-    const handleHelloAssoPayment = async () => {
-        setIsProcessingHelloAsso(true);
-        try {
-            const res = await fetch('/api/helloasso', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ amount: 50 })
-            });
-            const data = await res.json();
-            if (data.redirectUrl) {
-                window.location.href = data.redirectUrl;
-                return;
-            }
-        } catch (e) {
-            console.warn('HelloAsso API checkout error, fallback to portal:', e);
-        } finally {
-            setIsProcessingHelloAsso(false);
-        }
-        // Fallback to HelloAsso page
-        window.open('https://www.helloasso.com/associations/simadila-educ-action/don', '_blank');
     };
 
     const handleMaterialDonation = () => {
@@ -70,6 +50,15 @@ Bien cordialement,`
         }
     };
 
+    const currentAmount = isCustom ? (Number(customAmount) || 0) : selectedAmount;
+
+    const getImpactText = (amt) => {
+        if (amt < 20) return "Permet d'offrir des cahiers, stylos et fournitures de base à un écolier.";
+        if (amt < 50) return "Finance un kit scolaire complet (cartable, livres, fournitures) pour 1 enfant.";
+        if (amt < 100) return "Finance 3 mois de cantine scolaire et l'accompagnement complet d'un enfant.";
+        return "Assure la scolarisation complète, la cantine et le suivi pédagogique d'un enfant pour toute l'année.";
+    };
+
     return (
         <section className="section" id="donate">
             <div className="container">
@@ -81,138 +70,319 @@ Bien cordialement,`
                 {/* Trust Signals */}
                 <TrustSignals />
 
-                {/* Payment Methods Grid - Placed at Top */}
-                <div className="donation-options" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(310px, 1fr))', marginTop: '30px' }}>
+                {/* Checkout Experience Inspirée du Sélecteur Professionnel */}
+                <div className="donation-checkout-container">
                     
-                    {/* Method 1: HelloAsso (CB, Apple Pay, Google Pay) */}
-                    <div className="donation-card">
-                        <div className="payment-method-icon">
-                            <i className="fas fa-credit-card fa-2x"></i>
-                        </div>
-                        <h3>Carte Bancaire & Pay</h3>
-                        <div className="payment-visual-badges">
-                            <CBLogo height={26} />
-                            <ApplePayLogo height={26} />
-                            <GooglePayLogo height={26} />
-                            <VisaLogo height={26} />
-                            <MastercardLogo height={26} />
-                        </div>
-                        <p className="payment-description">
-                            Paiement 100% sécurisé via la plateforme solidaire française <strong>HelloAsso</strong> (0% de frais, reçu de don immédiat).
-                        </p>
-
-                        <div className="payment-cta-box" style={{ marginTop: 'auto', paddingTop: '15px' }}>
-                            <a
-                                href={helloAssoUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="btn btn-gold"
-                                style={{ width: '100%', justifyContent: 'center', fontWeight: 'bold', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
-                            >
-                                <i className="fas fa-heart"></i> Donner via HelloAsso
-                            </a>
-                        </div>
+                    {/* Header Step 3 Style */}
+                    <div className="checkout-step-header">
+                        <span className="step-number-circle">3</span>
+                        <h3>Choisissez un mode de paiement</h3>
                     </div>
 
-                    {/* Method 2: Bank Transfer (Crédit Mutuel) */}
-                    <div className="donation-card">
-                        <div className="payment-method-icon">
-                            <i className="fas fa-university fa-2x"></i>
-                        </div>
-                        <h3>Virement Bancaire</h3>
-                        <div className="payment-badges">
-                            <span className="badge-tag">Crédit Mutuel</span>
-                            <span className="badge-tag">SEPA / RIB</span>
-                        </div>
-                        <p className="payment-description">
-                            Pour les virements bancaires ponctuels ou réguliers directement sur le compte associatif :
-                        </p>
-
-                        <div className="bank-details-box" style={{ background: '#f8fafc', padding: '16px', borderRadius: '10px', margin: '15px 0', border: '1px solid #e2e8f0', textAlign: 'left', fontSize: '0.9rem' }}>
-                            <p style={{ marginBottom: '6px' }}><strong>Banque :</strong> Crédit Mutuel</p>
-                            <p style={{ marginBottom: '6px' }}><strong>Titulaire :</strong> Association Simadila Educ'Action</p>
-                            <div style={{ marginTop: '10px' }}>
-                                <span style={{ fontSize: '0.75rem', color: '#64748b', textTransform: 'uppercase', fontWeight: 'bold' }}>IBAN (France / International) :</span>
-                                <p style={{ fontSize: '0.95rem', fontWeight: 'bold', color: '#0f172a', wordBreak: 'break-all', marginTop: '3px', background: '#ffffff', padding: '8px', borderRadius: '6px', border: '1px solid #cbd5e1' }}>
-                                    {iban}
-                                </p>
-                            </div>
-                        </div>
-
+                    {/* Grille de sélection des modes de paiement */}
+                    <div className="payment-methods-grid">
+                        
+                        {/* 1. Carte bancaire */}
                         <button
-                            onClick={() => handleCopy(iban.replace(/\s+/g, ''), 'iban')}
-                            className="btn btn-outline"
-                            style={{ width: '100%', justifyContent: 'center', cursor: 'pointer' }}
+                            type="button"
+                            className={`payment-method-tile ${selectedMethod === 'card' ? 'active' : ''}`}
+                            onClick={() => setSelectedMethod('card')}
                         >
-                            <i className={copiedField === 'iban' ? "fas fa-check" : "fas fa-copy"}></i>
-                            {copiedField === 'iban' ? " IBAN copié !" : " Copier l'IBAN"}
+                            <div className="tile-icon-box">
+                                <i className="fas fa-credit-card"></i>
+                            </div>
+                            <div className="tile-text-box">
+                                <span className="tile-main-title">Carte bancaire</span>
+                                <div className="tile-mini-badges">
+                                    <span className="mini-badge">CB</span>
+                                    <span className="mini-badge">Visa</span>
+                                    <span className="mini-badge">Mastercard</span>
+                                </div>
+                            </div>
+                        </button>
+
+                        {/* 2. Apple Pay */}
+                        <button
+                            type="button"
+                            className={`payment-method-tile ${selectedMethod === 'applepay' ? 'active' : ''}`}
+                            onClick={() => setSelectedMethod('applepay')}
+                        >
+                            <div className="tile-icon-box">
+                                <ApplePayLogo height={22} />
+                            </div>
+                            <div className="tile-text-box">
+                                <span className="tile-main-title">Apple Pay</span>
+                                <span className="tile-subtitle">Paiement instantané Apple</span>
+                            </div>
+                        </button>
+
+                        {/* 3. Google Pay */}
+                        <button
+                            type="button"
+                            className={`payment-method-tile ${selectedMethod === 'googlepay' ? 'active' : ''}`}
+                            onClick={() => setSelectedMethod('googlepay')}
+                        >
+                            <div className="tile-icon-box">
+                                <GooglePayLogo height={22} />
+                            </div>
+                            <div className="tile-text-box">
+                                <span className="tile-main-title">Google Pay</span>
+                                <span className="tile-subtitle">Paiement sécurisé en 1 clic</span>
+                            </div>
+                        </button>
+
+                        {/* 4. Virement bancaire */}
+                        <button
+                            type="button"
+                            className={`payment-method-tile ${selectedMethod === 'transfer' ? 'active' : ''}`}
+                            onClick={() => setSelectedMethod('transfer')}
+                        >
+                            <div className="tile-icon-box">
+                                <i className="fas fa-university"></i>
+                            </div>
+                            <div className="tile-text-box">
+                                <span className="tile-main-title">Virement bancaire</span>
+                                <span className="tile-subtitle">Crédit Mutuel (IBAN / SEPA)</span>
+                            </div>
+                        </button>
+
+                        {/* 5. Moov Money Togo */}
+                        <button
+                            type="button"
+                            className={`payment-method-tile ${selectedMethod === 'moov' ? 'active' : ''}`}
+                            onClick={() => setSelectedMethod('moov')}
+                        >
+                            <div className="tile-icon-box">
+                                <i className="fas fa-mobile-alt"></i>
+                            </div>
+                            <div className="tile-text-box">
+                                <span className="tile-main-title">Moov Money</span>
+                                <span className="tile-subtitle">Togo (QR Code direct)</span>
+                            </div>
+                        </button>
+
+                        {/* 6. Fournitures & Espèces */}
+                        <button
+                            type="button"
+                            className={`payment-method-tile ${selectedMethod === 'materials' ? 'active' : ''}`}
+                            onClick={() => setSelectedMethod('materials')}
+                        >
+                            <div className="tile-icon-box">
+                                <i className="fas fa-boxes"></i>
+                            </div>
+                            <div className="tile-text-box">
+                                <span className="tile-main-title">Fournitures & Espèces</span>
+                                <span className="tile-subtitle">Dons en nature ou matériels</span>
+                            </div>
                         </button>
                     </div>
 
-                    {/* Method 3: Dons Matériels & Espèces (Fournitures, Livres, Matériel) */}
-                    <div className="donation-card">
-                        <div className="payment-method-icon">
-                            <i className="fas fa-boxes fa-2x"></i>
-                        </div>
-                        <h3>Fournitures & Espèces</h3>
-                        <div className="payment-badges">
-                            <span className="badge-tag">Kits & Livres</span>
-                            <span className="badge-tag">Matériel</span>
-                            <span className="badge-tag">Espèces</span>
-                        </div>
-                        <p className="payment-description">
-                            Vous souhaitez donner des fournitures scolaires, des livres, du matériel pédagogique ou faire un don direct en espèces :
-                        </p>
+                    {/* Panneau de détails dynamique selon le mode sélectionné */}
+                    <div className="payment-details-panel">
 
-                        <div className="payment-cta-box" style={{ marginTop: 'auto', paddingTop: '15px' }}>
-                            <button
-                                onClick={handleMaterialDonation}
-                                className="btn btn-outline"
-                                style={{ width: '100%', justifyContent: 'center', fontWeight: 'bold', cursor: 'pointer' }}
-                            >
-                                <i className="fas fa-paper-plane"></i> Proposer un don
-                            </button>
-                            <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '10px' }}>
-                                Contact : <strong>simadilaeducaction@gmail.com</strong>
+                        {/* Cas 1, 2 ou 3 : Paiements en ligne (Carte Bancaire, Apple Pay, Google Pay via HelloAsso) */}
+                        {(selectedMethod === 'card' || selectedMethod === 'applepay' || selectedMethod === 'googlepay') && (
+                            <div className="online-payment-details">
+                                <div className="method-header-row">
+                                    <div className="method-title-badge">
+                                        {selectedMethod === 'card' && <><i className="fas fa-credit-card"></i> Règlement par Carte Bancaire</>}
+                                        {selectedMethod === 'applepay' && <><ApplePayLogo height={24} /> Règlement avec Apple Pay</>}
+                                        {selectedMethod === 'googlepay' && <><GooglePayLogo height={24} /> Règlement avec Google Pay</>}
+                                    </div>
+                                    <div className="payment-visual-badges">
+                                        <CBLogo height={22} />
+                                        <VisaLogo height={22} />
+                                        <MastercardLogo height={22} />
+                                    </div>
+                                </div>
+
+                                <div className="amount-selection-area">
+                                    <label className="field-label">Choisissez le montant de votre don :</label>
+                                    <div className="amount-pills-grid">
+                                        {[10, 20, 50, 100].map((amt) => (
+                                            <button
+                                                key={amt}
+                                                type="button"
+                                                className={`amount-pill ${!isCustom && selectedAmount === amt ? 'selected' : ''}`}
+                                                onClick={() => {
+                                                    setSelectedAmount(amt);
+                                                    setIsCustom(false);
+                                                }}
+                                            >
+                                                {amt} €
+                                            </button>
+                                        ))}
+                                        <button
+                                            type="button"
+                                            className={`amount-pill ${isCustom ? 'selected' : ''}`}
+                                            onClick={() => setIsCustom(true)}
+                                        >
+                                            Montant libre
+                                        </button>
+                                    </div>
+
+                                    {isCustom && (
+                                        <div className="custom-amount-input-box">
+                                            <input
+                                                type="number"
+                                                min="1"
+                                                placeholder="Entrez votre montant en €"
+                                                value={customAmount}
+                                                onChange={(e) => setCustomAmount(e.target.value)}
+                                                className="custom-input"
+                                            />
+                                            <span className="currency-suffix">€</span>
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Impact concret du don */}
+                                <div className="selected-amount-impact">
+                                    <i className="fas fa-heart"></i>
+                                    <span>
+                                        <strong>Impact direct :</strong> {getImpactText(currentAmount)}
+                                    </span>
+                                </div>
+
+                                {/* Bouton de validation HelloAsso */}
+                                <div className="checkout-action-row">
+                                    <a
+                                        href={helloAssoUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={`btn btn-large ${selectedMethod === 'applepay' ? 'btn-apple-pay' : selectedMethod === 'googlepay' ? 'btn-google-pay' : 'btn-gold'}`}
+                                        style={{ width: '100%', justifyContent: 'center', fontWeight: 'bold', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '10px' }}
+                                    >
+                                        <i className="fas fa-lock"></i>
+                                        {selectedMethod === 'card' && `Valider mon don de ${currentAmount ? currentAmount + ' €' : ''} par Carte Bancaire`}
+                                        {selectedMethod === 'applepay' && `Payer ${currentAmount ? currentAmount + ' €' : ''} avec Apple Pay`}
+                                        {selectedMethod === 'googlepay' && `Payer ${currentAmount ? currentAmount + ' €' : ''} avec Google Pay`}
+                                    </a>
+                                </div>
+
+                                <p className="secure-subtext">
+                                    <i className="fas fa-check-circle"></i> Plateforme solidaire certifiée <strong>HelloAsso</strong> (0% de frais, reçu de don immédiat).
+                                </p>
+                            </div>
+                        )}
+
+                        {/* Cas 4 : Virement bancaire (Crédit Mutuel) */}
+                        {selectedMethod === 'transfer' && (
+                            <div className="transfer-details-box">
+                                <div className="method-header-row">
+                                    <div className="method-title-badge">
+                                        <i className="fas fa-university"></i> Virement Bancaire Direct (Crédit Mutuel)
+                                    </div>
+                                    <span className="badge-tag">SEPA / RIB</span>
+                                </div>
+
+                                <p className="transfer-intro">
+                                    Effectuez un virement bancaire ponctuel ou régulier directement sur le compte officiel de l'association :
+                                </p>
+
+                                <div className="bank-account-card">
+                                    <div className="bank-row">
+                                        <span className="row-label">Banque :</span>
+                                        <span className="row-value"><strong>Crédit Mutuel</strong></span>
+                                    </div>
+                                    <div className="bank-row">
+                                        <span className="row-label">Titulaire du compte :</span>
+                                        <span className="row-value"><strong>Association Simadila Educ'Action</strong></span>
+                                    </div>
+                                    <div className="bank-row iban-row">
+                                        <span className="row-label">IBAN (France / International) :</span>
+                                        <div className="iban-code-container">
+                                            <code className="iban-code">{iban}</code>
+                                            <button
+                                                type="button"
+                                                onClick={() => handleCopy(iban.replace(/\s+/g, ''), 'iban')}
+                                                className="btn-copy-iban"
+                                            >
+                                                <i className={copiedField === 'iban' ? "fas fa-check" : "fas fa-copy"}></i>
+                                                {copiedField === 'iban' ? " Copié !" : " Copier"}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Cas 5 : Moov Money Togo */}
+                        {selectedMethod === 'moov' && (
+                            <div className="moov-details-box">
+                                <div className="method-header-row">
+                                    <div className="method-title-badge">
+                                        <i className="fas fa-mobile-alt"></i> Don par Moov Money Togo
+                                    </div>
+                                    <span className="badge-tag">Togo</span>
+                                </div>
+
+                                <div className="moov-scanner-card">
+                                    <img
+                                        src="/staticfiles/img/qr-mobile-money.png"
+                                        alt="Code QR Moov Money"
+                                        className="moov-qr-img"
+                                    />
+                                    <div className="moov-instructions">
+                                        <h4>Comment donner par Moov Money :</h4>
+                                        <p>1. Ouvrez votre application ou composez le code USSD Moov Money.</p>
+                                        <p>2. Scannez le code QR ci-contre ou effectuez votre transfert.</p>
+                                        <p>3. Bénéficiaire officiel : <strong>Simadila Educ'Action</strong>.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Cas 6 : Dons en nature, fournitures & espèces */}
+                        {selectedMethod === 'materials' && (
+                            <div className="materials-details-box">
+                                <div className="method-header-row">
+                                    <div className="method-title-badge">
+                                        <i className="fas fa-boxes"></i> Dons Matériels, Fournitures & Espèces
+                                    </div>
+                                    <div className="payment-badges">
+                                        <span className="badge-tag">Kits Scolaires</span>
+                                        <span className="badge-tag">Livres</span>
+                                        <span className="badge-tag">Espèces</span>
+                                    </div>
+                                </div>
+
+                                <p className="materials-intro">
+                                    Vous souhaitez faire un don de <strong>fournitures scolaires, cartables, livres, matériel informatique/pédagogique</strong> ou apporter une <strong>contribution en espèces</strong> ?
+                                </p>
+
+                                <div className="materials-action-card">
+                                    <p>Cliquez ci-dessous pour nous envoyer votre proposition. Un message prêt à être complété s'ouvrira directement pour convenir des modalités pratiques :</p>
+                                    <button
+                                        type="button"
+                                        onClick={handleMaterialDonation}
+                                        className="btn btn-primary"
+                                        style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontWeight: 'bold' }}
+                                    >
+                                        <i className="fas fa-paper-plane"></i> Proposer un don en nature ou espèces
+                                    </button>
+                                    <p className="contact-direct-subtext">
+                                        Contact direct de coordination : <strong>simadilaeducaction@gmail.com</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        )}
+
+                    </div>
+
+                    {/* Bloc Sécurité et Confidentialité (Inspiré du bloc bleu OVH) */}
+                    <div className="checkout-security-box">
+                        <div className="security-icon-circle">
+                            <i className="fas fa-shield-alt"></i>
+                        </div>
+                        <div className="security-text-content">
+                            <h4>SÉCURITÉ ET CONFIDENTIALITÉ</h4>
+                            <p>
+                                Tous les paiements et dons effectués pour Simadila Educ'Action sont 100% sécurisés. Les renseignements personnels que vous nous transmettez demeureront strictement confidentiels et protégés par les normes RGPD.
                             </p>
                         </div>
                     </div>
 
-                    {/* Method 3: Mobile Money Togo (Moov Money) - Discreet */}
-                    <div className="donation-card" style={{ opacity: 0.95 }}>
-                        <div className="payment-method-icon">
-                            <i className="fas fa-mobile-alt fa-2x"></i>
-                        </div>
-                        <h3>Moov Money</h3>
-                        <div className="payment-badges">
-                            <span className="badge-tag">Moov Money Togo</span>
-                        </div>
-                        <p className="payment-description">
-                            Option pour vos contributions directes au Togo via Moov Money :
-                        </p>
-
-                        <div className="mobile-money-box" style={{ background: '#f8fafc', padding: '15px', borderRadius: '10px', margin: '15px 0', border: '1px solid #e2e8f0' }}>
-                            <img
-                                src="/staticfiles/img/qr-mobile-money.png"
-                                alt="Code QR Moov Money"
-                                style={{ width: '110px', height: '110px', margin: '0 auto 8px', display: 'block', borderRadius: '6px', border: '1px solid #cbd5e1' }}
-                            />
-                            <p style={{ fontSize: '0.8rem', color: '#475569', margin: '4px 0 2px' }}>Scannez le code QR pour effectuer votre don</p>
-                            <p style={{ fontSize: '0.8rem', color: '#64748b' }}>Bénéficiaire : <strong>Simadila Educ'Action</strong></p>
-                        </div>
-                    </div>
-
-                </div>
-
-                {/* Impact Equivalences Box - Placed below */}
-                <div className="impact-message-box" style={{ marginTop: '40px' }}>
-                    <i className="fas fa-heart fa-2x"></i>
-                    <div>
-                        <h3>Votre Impact Direct</h3>
-                        <p><strong>20€</strong> = 1 mois de fournitures scolaires pour 1 enfant</p>
-                        <p><strong>50€</strong> = 3 mois de cantine pour 1 enfant</p>
-                        <p><strong>100€</strong> = Scolarisation complète pour 9 mois</p>
-                    </div>
                 </div>
 
                 {/* Transparency Section */}
@@ -221,18 +391,19 @@ Bien cordialement,`
                     <div className="transparency-breakdown">
                         <div className="breakdown-item">
                             <div className="breakdown-bar" style={{ width: '80%', backgroundColor: '#4a9d4f' }}></div>
-                            <span>80% Actions terrain</span>
+                            <span>80% Programmes sur le terrain</span>
                         </div>
                         <div className="breakdown-item">
-                            <div className="breakdown-bar" style={{ width: '15%', backgroundColor: '#ffd700' }}></div>
-                            <span>15% Frais administratifs</span>
+                            <div className="breakdown-bar" style={{ width: '12%', backgroundColor: '#f4a261' }}></div>
+                            <span>12% Frais de fonctionnement</span>
                         </div>
                         <div className="breakdown-item">
-                            <div className="breakdown-bar" style={{ width: '5%', backgroundColor: '#6c757d' }}></div>
-                            <span>5% Collecte de fonds</span>
+                            <div className="breakdown-bar" style={{ width: '8%', backgroundColor: '#e76f51' }}></div>
+                            <span>8% Sensibilisation et communication</span>
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
     );
