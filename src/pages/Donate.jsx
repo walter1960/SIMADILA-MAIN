@@ -8,9 +8,7 @@ const Donate = () => {
 
     // Selected payment method: 'card' | 'applepay' | 'googlepay' | 'transfer' | 'moov' | 'materials'
     const [selectedMethod, setSelectedMethod] = useState('card');
-    const [selectedAmount, setSelectedAmount] = useState(50);
     const [customAmount, setCustomAmount] = useState('');
-    const [isCustom, setIsCustom] = useState(false);
     const [copiedField, setCopiedField] = useState(null);
 
     const iban = "FR76 1027 8027 4000 0509 5150 133";
@@ -48,15 +46,6 @@ Bien cordialement,`
         if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
             window.location.href = mailtoUrl;
         }
-    };
-
-    const currentAmount = isCustom ? (Number(customAmount) || 0) : selectedAmount;
-
-    const getImpactText = (amt) => {
-        if (amt < 20) return "Permet d'offrir des cahiers, stylos et fournitures de base à un écolier.";
-        if (amt < 50) return "Finance un kit scolaire complet (cartable, livres, fournitures) pour 1 enfant.";
-        if (amt < 100) return "Finance 3 mois de cantine scolaire et l'accompagnement complet d'un enfant.";
-        return "Assure la scolarisation complète, la cantine et le suivi pédagogique d'un enfant pour toute l'année.";
     };
 
     return (
@@ -197,51 +186,18 @@ Bien cordialement,`
                                 </div>
 
                                 <div className="amount-selection-area">
-                                    <label className="field-label">Choisissez le montant de votre don :</label>
-                                    <div className="amount-pills-grid">
-                                        {[10, 20, 50, 100].map((amt) => (
-                                            <button
-                                                key={amt}
-                                                type="button"
-                                                className={`amount-pill ${!isCustom && selectedAmount === amt ? 'selected' : ''}`}
-                                                onClick={() => {
-                                                    setSelectedAmount(amt);
-                                                    setIsCustom(false);
-                                                }}
-                                            >
-                                                {amt} €
-                                            </button>
-                                        ))}
-                                        <button
-                                            type="button"
-                                            className={`amount-pill ${isCustom ? 'selected' : ''}`}
-                                            onClick={() => setIsCustom(true)}
-                                        >
-                                            Montant libre
-                                        </button>
+                                    <label className="field-label">Montant de votre don (€) :</label>
+                                    <div className="custom-amount-input-box" style={{ maxWidth: '340px', marginTop: '4px' }}>
+                                        <input
+                                            type="number"
+                                            min="1"
+                                            placeholder="Saisissez votre montant (ex: 20, 50, 100...)"
+                                            value={customAmount}
+                                            onChange={(e) => setCustomAmount(e.target.value)}
+                                            className="custom-input"
+                                        />
+                                        <span className="currency-suffix">€</span>
                                     </div>
-
-                                    {isCustom && (
-                                        <div className="custom-amount-input-box">
-                                            <input
-                                                type="number"
-                                                min="1"
-                                                placeholder="Entrez votre montant en €"
-                                                value={customAmount}
-                                                onChange={(e) => setCustomAmount(e.target.value)}
-                                                className="custom-input"
-                                            />
-                                            <span className="currency-suffix">€</span>
-                                        </div>
-                                    )}
-                                </div>
-
-                                {/* Impact concret du don */}
-                                <div className="selected-amount-impact">
-                                    <i className="fas fa-heart"></i>
-                                    <span>
-                                        <strong>Impact direct :</strong> {getImpactText(currentAmount)}
-                                    </span>
                                 </div>
 
                                 {/* Bouton de validation HelloAsso */}
@@ -254,9 +210,9 @@ Bien cordialement,`
                                         style={{ width: '100%', justifyContent: 'center', fontWeight: 'bold', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '10px' }}
                                     >
                                         <i className="fas fa-lock"></i>
-                                        {selectedMethod === 'card' && `Valider mon don de ${currentAmount ? currentAmount + ' €' : ''} par Carte Bancaire`}
-                                        {selectedMethod === 'applepay' && `Payer ${currentAmount ? currentAmount + ' €' : ''} avec Apple Pay`}
-                                        {selectedMethod === 'googlepay' && `Payer ${currentAmount ? currentAmount + ' €' : ''} avec Google Pay`}
+                                        {selectedMethod === 'card' && (customAmount ? `Valider mon don de ${customAmount} € par Carte Bancaire` : "Valider mon don par Carte Bancaire")}
+                                        {selectedMethod === 'applepay' && (customAmount ? `Payer ${customAmount} € avec Apple Pay` : "Payer avec Apple Pay")}
+                                        {selectedMethod === 'googlepay' && (customAmount ? `Payer ${customAmount} € avec Google Pay` : "Payer avec Google Pay")}
                                     </a>
                                 </div>
 
