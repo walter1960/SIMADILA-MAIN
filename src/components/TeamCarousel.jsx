@@ -3,11 +3,11 @@ import { useState, useEffect } from 'react';
 const defaultTeamMembers = [
     {
         id: 1,
-        name: "Membre Fondateur",
-        role: "Président & Co-fondateur",
-        badge: "Bureau",
-        photo: null,
-        bio: "Engagé pour l'égalité des chances et le développement éducatif des enfants en zones rurales."
+        name: "Ma'ana KOUBIDINA",
+        role: "Président & Initiateur",
+        badge: "Fondateur",
+        photo: "/staticfiles/img/maana-koubidina.jpg",
+        bio: "Juriste de profession et de nationalité française. Initiateur et président de Simadila Educ'Action, engagé pour l'éducation et l'avenir des enfants."
     },
     {
         id: 2,

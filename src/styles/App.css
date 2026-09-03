@@ -1760,9 +1760,9 @@ footer {
 
 .team-avatar-box {
     position: relative;
-    width: 90px;
-    height: 90px;
-    margin-bottom: 18px;
+    width: 105px;
+    height: 105px;
+    margin-bottom: 20px;
 }
 
 .team-avatar-img {
@@ -1770,8 +1770,9 @@ footer {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #f1f5f9;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    object-position: center 15%;
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
 .team-avatar-placeholder {
