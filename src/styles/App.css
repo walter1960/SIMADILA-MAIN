@@ -880,6 +880,35 @@ footer {
     color: #444;
 }
 
+/* Payment Visual Badges (CB, Apple Pay, Google Pay, Visa, Mastercard) */
+.payment-visual-badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin: 12px 0 16px;
+}
+
+.payment-visual-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    cursor: default;
+}
+
+.payment-visual-badge:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+}
+
+.payment-visual-badge svg {
+    display: block;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
 /* Bank Details Direct */
 .bank-details-direct {
     background: var(--light);

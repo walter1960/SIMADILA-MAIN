@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import TrustSignals from '../components/TrustSignals';
+import { CBLogo, ApplePayLogo, GooglePayLogo, VisaLogo, MastercardLogo } from '../components/PaymentLogos';
 
 const Donate = () => {
     useScrollAnimation('.section-title, .donation-card');
@@ -8,6 +9,8 @@ const Donate = () => {
 
     const iban = "FR76 1027 8027 4000 0509 5150 133";
     const mobileMoneyPhone = "+228 96 03 25 36";
+    // URL directe vers la page HelloAsso de l'association
+    const helloAssoUrl = "https://www.helloasso.com/associations/simadila-educ-action";
 
     const handleCopy = (text, fieldName) => {
         navigator.clipboard.writeText(text);
@@ -87,24 +90,27 @@ Bien cordialement,`
                             <i className="fas fa-credit-card fa-2x"></i>
                         </div>
                         <h3>Carte Bancaire & Pay</h3>
-                        <div className="payment-badges">
-                            <span className="badge-tag">Apple Pay</span>
-                            <span className="badge-tag">Google Pay</span>
-                            <span className="badge-tag">CB</span>
+                        <div className="payment-visual-badges">
+                            <CBLogo height={26} />
+                            <ApplePayLogo height={26} />
+                            <GooglePayLogo height={26} />
+                            <VisaLogo height={26} />
+                            <MastercardLogo height={26} />
                         </div>
                         <p className="payment-description">
                             Paiement 100% sécurisé via la plateforme solidaire française <strong>HelloAsso</strong> (0% de frais, reçu de don immédiat).
                         </p>
 
-                        <div className="payment-cta-box" style={{ marginTop: '25px' }}>
-                            <button
-                                onClick={handleHelloAssoPayment}
-                                disabled={isProcessingHelloAsso}
+                        <div className="payment-cta-box" style={{ marginTop: 'auto', paddingTop: '15px' }}>
+                            <a
+                                href={helloAssoUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="btn btn-gold"
-                                style={{ width: '100%', justifyContent: 'center', fontWeight: 'bold', cursor: 'pointer' }}
+                                style={{ width: '100%', justifyContent: 'center', fontWeight: 'bold', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
                             >
-                                <i className="fas fa-heart"></i> {isProcessingHelloAsso ? "Connexion sécurisée..." : "Donner via HelloAsso"}
-                            </button>
+                                <i className="fas fa-heart"></i> Donner via HelloAsso
+                            </a>
                         </div>
                     </div>
 
