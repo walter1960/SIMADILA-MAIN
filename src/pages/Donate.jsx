@@ -62,9 +62,8 @@ Bien cordialement,`
                 {/* Checkout Experience Inspirée du Sélecteur Professionnel */}
                 <div className="donation-checkout-container">
                     
-                    {/* Header Step 3 Style */}
+                    {/* Header */}
                     <div className="checkout-step-header">
-                        <span className="step-number-circle">3</span>
                         <h3>Choisissez un mode de paiement</h3>
                     </div>
 
