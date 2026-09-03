@@ -1,7 +1,8 @@
 import useScrollAnimation from '../hooks/useScrollAnimation';
+import TeamCarousel from '../components/TeamCarousel';
 
 const About = () => {
-    useScrollAnimation('.section-title, .about-text, .about-image');
+    useScrollAnimation('.section-title, .about-text, .about-image, .team-section');
     return (
         <section className="section" id="a-propos">
             <div className="container">
@@ -28,6 +29,15 @@ const About = () => {
                         <img src="/staticfiles/img/simadila-enfants-ecole.jpg" alt="Bénéficiaires et équipe de Simadila Educ'Action"
                             className="about-img-bg" />
                     </div>
+                </div>
+
+                {/* Section Fondateurs & Équipe Simadila */}
+                <div className="team-section">
+                    <h2 className="section-title" style={{ marginBottom: '10px' }}>Équipe & Membres Fondateurs</h2>
+                    <p className="section-subtitle" style={{ textAlign: 'center', color: '#64748b', marginBottom: '10px' }}>
+                        Des femmes et des hommes engagés au quotidien pour l'éducation et l'avenir des enfants
+                    </p>
+                    <TeamCarousel />
                 </div>
             </div>
         </section>
