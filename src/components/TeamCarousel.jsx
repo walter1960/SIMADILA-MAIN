@@ -200,7 +200,13 @@ const TeamCarousel = ({ members = defaultTeamMembers }) => {
                                                 src={member.photoSecondary}
                                                 alt={`${member.name} - Contexte`}
                                                 className="team-rect-img"
-                                                style={member.id === 3 ? { objectPosition: 'center 20%' } : {}}
+                                                style={
+                                                    member.id === 3 
+                                                        ? { objectPosition: 'center 20%' } 
+                                                        : member.id === 1 
+                                                        ? { objectPosition: 'center 25%' } 
+                                                        : {}
+                                                }
                                             />
                                         </div>
                                     ) : (
