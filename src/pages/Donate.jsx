@@ -15,28 +15,10 @@ const Donate = () => {
         setTimeout(() => setCopiedField(null), 3000);
     };
 
-    const [isProcessingHelloAsso, setIsProcessingHelloAsso] = useState(false);
+    const HELLOASSO_FORM_URL = "https://www.helloasso.com/associations/simadila-educ-action/formulaires/1";
 
-    const handleHelloAssoPayment = async () => {
-        setIsProcessingHelloAsso(true);
-        try {
-            const res = await fetch('/api/helloasso', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ amount: 50 })
-            });
-            const data = await res.json();
-            if (data.redirectUrl) {
-                window.location.href = data.redirectUrl;
-                return;
-            }
-        } catch (e) {
-            console.warn('HelloAsso API checkout error, fallback to portal:', e);
-        } finally {
-            setIsProcessingHelloAsso(false);
-        }
-        // Fallback to HelloAsso page
-        window.open('https://www.helloasso.com/associations/simadila-educ-action/don', '_blank');
+    const handleHelloAssoPayment = () => {
+        window.open(HELLOASSO_FORM_URL, '_blank', 'noopener,noreferrer');
     };
 
     const handleMaterialDonation = () => {
@@ -128,14 +110,15 @@ Bien cordialement,`
                         </p>
 
                         <div className="payment-cta-box" style={{ marginTop: '25px' }}>
-                            <button
-                                onClick={handleHelloAssoPayment}
-                                disabled={isProcessingHelloAsso}
+                            <a
+                                href={HELLOASSO_FORM_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="btn btn-gold"
-                                style={{ width: '100%', justifyContent: 'center', fontWeight: 'bold', cursor: 'pointer' }}
+                                style={{ width: '100%', justifyContent: 'center', fontWeight: 'bold', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}
                             >
-                                <i className="fas fa-heart"></i> {isProcessingHelloAsso ? "Connexion sécurisée..." : "Donner via HelloAsso"}
-                            </button>
+                                <i className="fas fa-heart" style={{ marginRight: '8px' }}></i> Donner via HelloAsso
+                            </a>
                         </div>
                     </div>
 
