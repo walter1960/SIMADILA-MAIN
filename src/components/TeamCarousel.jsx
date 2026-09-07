@@ -8,7 +8,7 @@ const defaultTeamMembers = [
         role: "Président & Initiateur de Simadila Educ'Action",
         badge: "PRÉSIDENT-FONDATEUR",
         photo: "/staticfiles/img/maana-koubidina.jpg",
-        photoSecondary: "/staticfiles/img/maana-koubidina-2.jpg",
+        photoSecondary: null,
         bio: "Président de l'association Simadila Educ'Action, Ma'ana Koubidina est juriste de formation et praticien en droit public au sein d'une structure en France."
     },
     {
@@ -173,7 +173,7 @@ const TeamCarousel = ({ members = defaultTeamMembers }) => {
                                     onClick={() => openMemberModal(member, 0)}
                                     title="Cliquez pour agrandir la photo et lire la description complète"
                                 >
-                                    <div className="team-circle-avatar">
+                                    <div className={`team-circle-avatar ${!member.photoSecondary ? 'single-avatar' : ''}`}>
                                         {member.photo ? (
                                             <img
                                                 src={member.photo}
@@ -187,7 +187,7 @@ const TeamCarousel = ({ members = defaultTeamMembers }) => {
                                         )}
                                     </div>
 
-                                    {member.photoSecondary ? (
+                                    {member.photoSecondary && (
                                         <div 
                                             className="team-rect-photo"
                                             onClick={(e) => {
@@ -200,18 +200,8 @@ const TeamCarousel = ({ members = defaultTeamMembers }) => {
                                                 src={member.photoSecondary}
                                                 alt={`${member.name} - Contexte`}
                                                 className="team-rect-img"
-                                                style={
-                                                    member.id === 3 
-                                                        ? { objectPosition: 'center 20%' } 
-                                                        : member.id === 1 
-                                                        ? { objectPosition: 'center 25%' } 
-                                                        : {}
-                                                }
+                                                style={member.id === 3 ? { objectPosition: 'center 20%' } : {}}
                                             />
-                                        </div>
-                                    ) : (
-                                        <div className="team-rect-placeholder">
-                                            <i className="fas fa-image"></i>
                                         </div>
                                     )}
 

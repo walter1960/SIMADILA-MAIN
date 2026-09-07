@@ -22,15 +22,15 @@ const Donate = () => {
     };
 
     const handleMaterialDonation = () => {
-        const subject = encodeURIComponent("Proposition de don (fournitures scolaires, matériel ou espèces) - Simadila Educ'Action");
+        const subject = encodeURIComponent("Proposition de don (fournitures scolaires, livres ou matériel) - Simadila Educ'Action");
         const body = encodeURIComponent(
 `Bonjour l'équipe Simadila Educ'Action,
 
-Je souhaite faire un don en nature ou en espèces pour soutenir vos actions éducatives au Togo et au Bénin :
+Je souhaite faire un don en nature pour soutenir vos actions éducatives au Togo et au Bénin :
 
-- Type de don (fournitures scolaires, livres, matériel pédagogique/informatique, don en espèces) : 
+- Type de don (fournitures scolaires, livres, matériel pédagogique/informatique) : 
 - Description détaillée du don : 
-- Quantité / Montant estimé : 
+- Quantité estimée : 
 - Ville / Pays de remise ou d'expédition : 
 - Nom et Prénom : 
 - Téléphone : 
@@ -157,19 +157,18 @@ Bien cordialement,`
                         </button>
                     </div>
 
-                    {/* Method 3: Dons Matériels & Espèces (Fournitures, Livres, Matériel) */}
+                    {/* Method 3: Dons Matériels (Fournitures, Livres, Matériel) */}
                     <div className="donation-card">
                         <div className="payment-method-icon">
                             <i className="fas fa-boxes fa-2x"></i>
                         </div>
-                        <h3>Fournitures & Espèces</h3>
+                        <h3>Fournitures</h3>
                         <div className="payment-badges">
                             <span className="badge-tag">Kits & Livres</span>
                             <span className="badge-tag">Matériel</span>
-                            <span className="badge-tag">Espèces</span>
                         </div>
                         <p className="payment-description">
-                            Vous souhaitez donner des fournitures scolaires, des livres, du matériel pédagogique ou faire un don direct en espèces :
+                            Vous souhaitez donner des fournitures scolaires, des livres, du matériel pédagogique ou faire un don :
                         </p>
 
                         <div className="payment-cta-box" style={{ marginTop: 'auto', paddingTop: '15px' }}>
