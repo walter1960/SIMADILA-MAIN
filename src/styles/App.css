@@ -1729,7 +1729,7 @@ footer {
 
 .team-carousel-track {
     display: flex;
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.85s cubic-bezier(0.25, 1, 0.5, 1);
     will-change: transform;
 }
 
@@ -1762,7 +1762,15 @@ footer {
     position: relative;
     width: 105px;
     height: 105px;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-avatar-box.has-dual-photos {
+    width: 145px;
+    height: 105px;
 }
 
 .team-avatar-img {
@@ -1773,9 +1781,121 @@ footer {
     object-position: center 15%;
     border: 3px solid #ffffff;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transition: transform 0.25s ease;
 }
 
-.team-avatar-placeholder {
+.team-nav-btn.team-nav-prev {
+    background: #25502a;
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 2px 8px rgba(37, 80, 42, 0.3);
+}
+
+.team-nav-btn.team-nav-prev:hover {
+    background: #1c3d20;
+    color: #ffffff;
+}
+
+.team-nav-btn.team-nav-next {
+    background: #ffffff;
+    color: #1e293b;
+    border: 1px solid #cbd5e1;
+}
+
+.team-nav-btn.team-nav-next:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+}
+
+/* Exact Mockup Card Layout */
+.team-card.team-card-mockup-exact {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 24px 14px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card.team-card-mockup-exact:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
+}
+
+.team-duo-photos-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 95px;
+    margin-bottom: 12px;
+}
+
+.team-circle-avatar {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    border: 3.5px solid #ffffff;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+    overflow: hidden;
+    z-index: 2;
+    background: #ffffff;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.team-circle-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+}
+
+.team-rect-photo {
+    width: 78px;
+    height: 72px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-left: -22px;
+    margin-top: 4px;
+    z-index: 1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    background: #f1f5f9;
+    flex-shrink: 0;
+}
+
+.team-rect-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.team-rect-placeholder {
+    width: 78px;
+    height: 72px;
+    border-radius: 12px;
+    margin-left: -22px;
+    margin-top: 4px;
+    background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    z-index: 1;
+    flex-shrink: 0;
+}
+
+.team-avatar-placeholder-circle {
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -1784,51 +1904,61 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.2rem;
-    border: 3px solid #e2e8f0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    font-size: 2rem;
 }
 
-.team-badge-tag {
-    position: absolute;
-    bottom: -6px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--primary);
-    color: #ffffff;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 2px 9px;
-    border-radius: 20px;
-    white-space: nowrap;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-
-.team-info {
+.team-badge-row {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
     width: 100%;
 }
 
-.team-member-name {
-    font-size: 1.2rem;
-    font-weight: 700;
+.team-exact-badge {
+    background: #25502a;
+    color: #ffffff;
+    font-size: 0.64rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    line-height: 1.25;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(37, 80, 42, 0.25);
+}
+
+.team-card-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-exact-name {
+    font-size: 1.08rem;
+    font-weight: 800;
     color: #0f172a;
-    margin-bottom: 4px;
+    margin: 0 0 4px 0;
+    line-height: 1.3;
+    text-align: center;
 }
 
-.team-member-role {
-    font-size: 0.88rem;
+.team-exact-role {
+    font-size: 0.78rem;
     font-weight: 600;
-    color: var(--secondary);
-    margin-bottom: 10px;
+    color: #2e663a;
+    margin: 0 0 8px 0;
+    line-height: 1.35;
+    text-align: center;
 }
 
-.team-member-bio {
-    font-size: 0.86rem;
-    color: #64748b;
+.team-exact-bio {
+    font-size: 0.78rem;
+    color: #334155;
     line-height: 1.5;
     margin: 0;
+    text-align: center;
 }
 
 .team-dots-indicator {
@@ -1839,8 +1969,8 @@ footer {
 }
 
 .team-dot {
-    width: 9px;
-    height: 9px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: #cbd5e1;
     border: none;
@@ -1850,7 +1980,240 @@ footer {
 }
 
 .team-dot.active {
-    background: var(--primary);
+    background: #25502a;
     width: 22px;
     border-radius: 10px;
+}
+
+.clickable-photo-box {
+    cursor: pointer;
+    position: relative;
+}
+
+.team-zoom-badge {
+    position: absolute;
+    bottom: -6px;
+    right: 4px;
+    background: rgba(15, 23, 42, 0.85);
+    color: #ffffff;
+    font-size: 0.62rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 12px;
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+
+.clickable-photo-box:hover .team-zoom-badge {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Modal Lightbox for Team Members */
+.team-modal-overlay {
+    position: fixed;
+    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.78);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    padding: 20px;
+    margin: 0;
+    box-sizing: border-box;
+    animation: fadeInModal 0.25s ease;
+}
+
+.team-modal-container {
+    position: relative;
+    background: #ffffff;
+    border-radius: 24px;
+    max-width: 820px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    margin: auto;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.team-modal-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    border: none;
+    color: #475569;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.2s ease;
+}
+
+.team-modal-close-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+    transform: rotate(90deg);
+}
+
+.team-modal-content-grid {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 28px;
+    padding: 32px;
+}
+
+.team-modal-media-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-modal-large-frame {
+    width: 100%;
+    height: 360px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #0f172a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.team-modal-large-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.team-modal-large-img.school-full-fit {
+    object-fit: contain;
+    background: #111827;
+}
+
+.team-modal-photo-switcher {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+}
+
+.team-modal-tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 12px;
+    border-radius: 12px;
+    border: 1.5px solid #e2e8f0;
+    background: #ffffff;
+    cursor: pointer;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: #475569;
+    transition: all 0.2s ease;
+}
+
+.team-modal-tab-btn img {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.team-modal-tab-btn.active {
+    border-color: #25502a;
+    background: #f0fdf4;
+    color: #25502a;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(37, 80, 42, 0.15);
+}
+
+.team-modal-info-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.team-modal-badge-wrapper {
+    margin-bottom: 12px;
+}
+
+.team-modal-title {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 6px 0;
+    line-height: 1.25;
+}
+
+.team-modal-role-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #2e663a;
+    margin: 0 0 20px 0;
+    line-height: 1.4;
+}
+
+.team-modal-bio-container {
+    background: #f8fafc;
+    border-radius: 14px;
+    padding: 20px;
+    border: none;
+}
+
+.team-modal-bio-container h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #475569;
+    margin: 0 0 8px 0;
+    letter-spacing: 0.5px;
+}
+
+.team-modal-bio-container p {
+    font-size: 0.92rem;
+    color: #334155;
+    line-height: 1.6;
+    margin: 0;
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+    .team-modal-content-grid {
+        grid-template-columns: 1fr;
+        padding: 24px 18px;
+        gap: 20px;
+    }
+    .team-modal-large-frame {
+        height: 280px;
+    }
 }

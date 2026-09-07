@@ -28,11 +28,11 @@ const Footer = () => {
                     </div>
 
                     <div className="footer-column">
-                        <h3>Services</h3>
+                        <h3>Partenariats</h3>
                         <ul>
-                            <li><Link to="/services">Appels d'offres</Link></li>
-                            <li><Link to="/services#prestataires">Devenir Prestataire</Link></li>
-                            <li><Link to="/services#politiques">Politiques de l'Asso</Link></li>
+                            <li><Link to="/services">Appels aux dons</Link></li>
+                            <li><Link to="/services">Mécénat & Fondations</Link></li>
+                            <li><Link to="/services">Politiques & Statuts</Link></li>
                             <li><Link to="/donate">Faire un Don</Link></li>
                         </ul>
                     </div>

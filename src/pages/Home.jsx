@@ -19,7 +19,7 @@ const Home = () => {
 
                 <div className="container hero-content">
                     <h1>Éducation pour Tous en Afrique de l'Ouest</h1>
-                    <p className="hero-quote">"Grâce à vos dons j'ai eu accès à une éducation et un accompagnement de qualité"</p>
+                    <p className="hero-quote">"Grâce aux dons, j'ai eu accès à une éducation et un accompagnement de qualité."</p>
                     <p className="hero-impact">En 2026, <strong>50 enfants</strong> sont déjà accompagnés grâce à votre soutien.</p>
                     <div className="hero-cta-group">
                         <Link to="/mission" className="btn btn-large">Découvrir notre mission</Link>

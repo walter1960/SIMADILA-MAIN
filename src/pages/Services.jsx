@@ -6,31 +6,29 @@ const Services = () => {
     useScrollAnimation('.section-title, .service-card, .tender-card');
     const [activeTab, setActiveTab] = useState('tenders');
 
-    const handleTenderApply = (tender) => {
+    const handleProjectSupport = (project) => {
         const email = 'simadilaeducaction@gmail.com';
-        const subject = `[Candidature AO] ${tender.reference} - ${tender.title}`;
+        const subject = `[Financement / Don] ${project.reference} - ${project.title}`;
         const body = `Bonjour l'équipe Simadila Educ'Action,
 
-Je souhaite vous soumettre une proposition pour l'appel d'offres :
-• Référence : ${tender.reference}
-• Intitulé : ${tender.title}
-• Localisation : ${tender.location}
-• Échéance : ${tender.deadline}
-• Budget indicatif : ${tender.budget}
+Je souhaite apporter mon soutien financier / une subvention pour le projet suivant :
+• Référence : ${project.reference}
+• Intitulé : ${project.title}
+• Localisation : ${project.location}
+• Échéance : ${project.deadline}
+• Objectif de financement : ${project.budget}
 
---- Informations sur notre structure ---
-Nom de l'entreprise / prestataire : 
+--- Informations sur le donateur / organisme mécène ---
+Nom du donateur / Entreprise / Fondation : 
 Personne de contact : 
 Téléphone : 
 Email : 
 Adresse / Pays : 
 
---- Détails de notre offre ---
-Description de la prestation : 
-Estimation tarifaire / Devis : 
-Délais d'exécution proposés : 
-
-(Vous pouvez modifier ce message et joindre tous vos documents utiles).
+--- Modalités de soutien envisagées ---
+Montant envisagé du don ou de la subvention : 
+Nature du soutien (don financier, mécénat, subvention institutionnelle, don en nature) : 
+Commentaires / Précisions : 
 
 Cordialement,
 [Votre Nom / Votre Structure]`;
@@ -62,36 +60,36 @@ Cordialement,
         window.open(gmailUrl, '_blank', 'noopener,noreferrer');
     };
 
-    const tenders = [
+    const projects = [
         {
             id: 1,
-            title: "Fourniture de 1500 kits scolaires complets",
-            reference: "AO-2028-001",
+            title: "Financement de 1500 kits scolaires complets",
+            reference: "DON-2028-001",
             deadline: "Juillet 2028",
             budget: "8,000 €",
-            status: "Ouvert",
+            status: "Appel en cours",
             location: "Togo et Bénin",
-            description: "Appel d'offres pour la fourniture de 1500 kits scolaires complets (cahiers, stylos, cartables) pour les écoles partenaires au Togo et au Bénin."
+            description: "Appel aux dons et subventions pour financer l'acquisition et la distribution de 1500 kits scolaires complets (cahiers, stylos, cartables) au profit des écoliers du Togo et du Bénin."
         },
         {
             id: 2,
-            title: "Mise en place d'une bibliothèque scolaire en milieu rural",
-            reference: "AO-2027-002",
+            title: "Création et aménagement d'une bibliothèque scolaire en milieu rural",
+            reference: "DON-2027-002",
             deadline: "Décembre 2027",
             budget: "15,000 €",
-            status: "Ouvert",
+            status: "Appel en cours",
             location: "Togo et Bénin",
-            description: "Appel d'offres pour la mise en place et l'aménagement d'une bibliothèque scolaire en milieu rural avec mobilier et fonds documentaire de lecture au Togo et au Bénin."
+            description: "Appel aux dons et subventions pour financer la création et l'aménagement d'une bibliothèque scolaire en milieu rural avec mobilier et fonds documentaire de lecture au Togo et au Bénin."
         },
         {
             id: 3,
-            title: "Formation, sensibilisation et conférences",
-            reference: "AO-2028-003",
+            title: "Ateliers éducatifs, sensibilisation et conférences locales",
+            reference: "DON-2028-003",
             deadline: "10 avril 2028",
             budget: "3,000 €",
-            status: "Ouvert",
+            status: "Appel en cours",
             location: "Togo et Bénin",
-            description: "Actions de formation, sensibilisation et conférences sur des thèmes adaptés aux réalités locales pour les acteurs éducatifs et les jeunes au Togo et au Bénin."
+            description: "Appel aux dons et subventions pour financer des actions de formation, sensibilisation et conférences sur des thèmes adaptés aux réalités locales pour les acteurs éducatifs et les jeunes au Togo et au Bénin."
         }
     ];
 
@@ -99,22 +97,22 @@ Cordialement,
         {
             icon: "handshake",
             title: "Devenir Partenaire Institutionnel",
-            description: "Vous êtes une entreprise, une fondation ou une institution ? Collaborons pour amplifier notre impact.",
-            benefits: ["Visibilité sur nos supports", "Rapport d'impact dédié", "Événements exclusifs"],
+            description: "Vous êtes une institution publique, une collectivité ou un organisme d'aide ? Collaborons pour amplifier notre impact éducatif.",
+            benefits: ["Visibilité sur nos supports", "Rapport d'impact dédié", "Partenariats pluriannuels"],
             cta: "Nous contacter"
         },
         {
-            icon: "truck",
-            title: "Devenir Prestataire",
-            description: "Fournisseurs, constructeurs, formateurs : rejoignez notre réseau de prestataires de confiance.",
-            benefits: ["Accès aux appels d'offres", "Paiements sécurisés", "Partenariats long terme"],
-            cta: "S'inscrire"
+            icon: "hand-holding-usd",
+            title: "Mécénat d'Entreprise & Fondations",
+            description: "Entreprises, fondations d'entreprise et fonds de dotation : associez votre engagement RSE au soutien de nos projets éducatifs prioritaires.",
+            benefits: ["Reçu fiscal & déductibilité", "Suivi transparent des fonds", "Valorisation solidaire"],
+            cta: "Soutenir un projet"
         },
         {
             icon: "users",
-            title: "Partenariat Associatif",
-            description: "Vous êtes une association locale ? Travaillons ensemble sur le terrain pour maximiser notre impact.",
-            benefits: ["Partage de ressources", "Formation mutuelle", "Projets communs"],
+            title: "Partenariat Associatif & Terrain",
+            description: "Vous êtes une association locale ou internationale ? Travaillons ensemble sur le terrain pour maximiser les résultats auprès des enfants.",
+            benefits: ["Partage de ressources", "Actions conjointes", "Projets éducatifs partagés"],
             cta: "Proposer un projet"
         }
     ];
@@ -122,9 +120,9 @@ Cordialement,
     return (
         <section className="section" id="services">
             <div className="container">
-                <h2 className="section-title">Services & Partenariats</h2>
+                <h2 className="section-title">Appels aux Dons & Partenariats</h2>
                 <p className="section-subtitle">
-                    Découvrez nos appels d'offres en cours et les opportunités de collaboration
+                    Découvrez nos appels aux dons et projets en recherche de financement ainsi que les opportunités de mécénat
                 </p>
 
                 {/* Tabs */}
@@ -133,64 +131,64 @@ Cordialement,
                         className={`tab-btn ${activeTab === 'tenders' ? 'active' : ''}`}
                         onClick={() => setActiveTab('tenders')}
                     >
-                        <i className="fas fa-gavel"></i> Appels d'offres
+                        <i className="fas fa-hand-holding-heart"></i> Appels aux dons
                     </button>
                     <button
                         className={`tab-btn ${activeTab === 'partnerships' ? 'active' : ''}`}
                         onClick={() => setActiveTab('partnerships')}
                     >
-                        <i className="fas fa-handshake"></i> Partenariats
+                        <i className="fas fa-handshake"></i> Partenariats & Mécénat
                     </button>
                     <button
                         className={`tab-btn ${activeTab === 'policies' ? 'active' : ''}`}
                         onClick={() => setActiveTab('policies')}
                     >
-                        <i className="fas fa-file-contract"></i> Politiques
+                        <i className="fas fa-file-contract"></i> Politiques & Statuts
                     </button>
                 </div>
 
-                {/* Tenders Tab */}
+                {/* Tenders / Funding Tab */}
                 {activeTab === 'tenders' && (
                     <div className="tenders-section">
                         <div className="tenders-intro">
                             <i className="fas fa-info-circle"></i>
-                            <p>Tous nos appels d'offres sont ouverts et transparents. Les prestataires intéressés peuvent soumettre leur offre ou candidature.</p>
+                            <p>Tous nos appels aux dons et subventions sont présentés en toute transparence. Donateurs, entreprises partenaires, mécènes et institutions peuvent apporter leur concours financier ou matériel pour donner vie à ces actions.</p>
                         </div>
 
                         <div className="tenders-grid">
-                            {tenders.map((tender) => (
-                                <div key={tender.id} className="tender-card">
+                            {projects.map((project) => (
+                                <div key={project.id} className="tender-card">
                                     <div className="tender-header">
-                                        <span className={`tender-status ${tender.status.toLowerCase()}`}>
-                                            {tender.status}
+                                        <span className="tender-status ouvert">
+                                            {project.status}
                                         </span>
-                                        <span className="tender-reference">{tender.reference}</span>
+                                        <span className="tender-reference">{project.reference}</span>
                                     </div>
-                                    <h3 className="tender-title">{tender.title}</h3>
-                                    <p className="tender-description">{tender.description}</p>
+                                    <h3 className="tender-title">{project.title}</h3>
+                                    <p className="tender-description">{project.description}</p>
 
                                     <div className="tender-details">
                                         <div className="tender-detail">
                                             <i className="fas fa-map-marker-alt"></i>
-                                            <span>{tender.location}</span>
+                                            <span>{project.location}</span>
                                         </div>
                                         <div className="tender-detail">
                                             <i className="fas fa-calendar"></i>
-                                            <span>Échéance : {tender.deadline}</span>
+                                            <span>Échéance : {project.deadline}</span>
                                         </div>
                                         <div className="tender-detail">
                                             <i className="fas fa-euro-sign"></i>
-                                            <span>Budget : {tender.budget}</span>
+                                            <span>Objectif : {project.budget}</span>
                                         </div>
                                     </div>
 
                                     <div className="tender-actions">
                                         <button
-                                            onClick={() => handleTenderApply(tender)}
+                                            onClick={() => handleProjectSupport(project)}
                                             className="btn btn-outline"
                                             style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
                                         >
-                                            <i className="fas fa-paper-plane"></i> Soumettre une offre
+                                            <i className="fas fa-heart"></i> Soutenir ce projet
                                         </button>
                                     </div>
                                 </div>
